@@ -1,5 +1,4 @@
 import { ourProducts } from "@/constants/constant";
-import { head } from "framer-motion/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

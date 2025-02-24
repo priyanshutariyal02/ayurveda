@@ -23,7 +23,7 @@ interface OurProducts {
   link: string;
 }
 
-export const ourProducts = [
+export const ourProducts: OurProducts[] = [
   {
     title: "Vatahari Oil",
     img: p1,

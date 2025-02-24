@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { HoveredLink, Menu, MenuItem } from "./navbar-menu";
+import { Menu } from "./navbar-menu";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import Image from "next/image";
 import { navItems } from "@/constants/navItems";
 
 const NavbarSimple = ({
