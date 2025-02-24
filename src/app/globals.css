@@ -2,20 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+h1 {
+  @apply text-h1 text-gray-800;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+h2 {
+  @apply text-h2 text-gray-800;
+}
+h3 {
+  @apply text-h3 text-gray-800;
+}
+h4 {
+  @apply text-h4 text-gray-800;
+}
+h5 {
+  @apply text-h5 text-gray-800;
+}
+h6 {
+  @apply text-h6 text-gray-800;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+p{
+  @apply text-gray-700;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f59e0b;
+  scroll-behavior: smooth;
+  border-radius: 10px;
 }
