@@ -12,8 +12,6 @@ const NavbarSimple = ({
   className: string;
   isScrolled: boolean;
 }) => {
-  const [active, setActive] = useState<string | null>(null);
-
   return (
     <div
       className={`relative w-full hidden md:flex items-center justify-center p-2 border ${className}`}
@@ -25,7 +23,6 @@ const NavbarSimple = ({
         )}
       >
         <Menu
-          setActive={setActive}
           className={`flex justify-center items-center md:gap-4 text-14px md:text-16px shadow-xl ${
             isScrolled ? "bg-white" : "bg-transparent"
           }`}

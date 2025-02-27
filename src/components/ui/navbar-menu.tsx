@@ -60,17 +60,14 @@ export const MenuItem = ({
 };
 
 export const Menu = ({
-  setActive,
   children,
   className,
 }: {
-  setActive: (item: string | null) => void;
   children: React.ReactNode;
   className?: string;
 }) => {
   return (
     <nav
-      onMouseLeave={() => setActive(null)} // resets the state
       className={`relative rounded-full flex space-x-4 px-2 md:px-8 py-4 ${className}`}
     >
       {children}
@@ -80,7 +77,10 @@ export const Menu = ({
 
 export const HoveredLink = ({ children, ...rest }: any) => {
   return (
-    <Link {...rest} className="hover:bg-primary/10 text-black rounded-lg p-2 text-16px">
+    <Link
+      {...rest}
+      className="hover:bg-primary/10 text-black rounded-lg p-2 text-16px"
+    >
       {children}
     </Link>
   );

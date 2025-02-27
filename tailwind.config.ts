@@ -40,7 +40,7 @@ export default {
           red: "#FF0029",
           pink: "#FF2DA9",
           yellow: "#FFB946",
-          green: "#A0D964",
+          green: "#16a34a",
           purple: "#B973FF",
         },
       },

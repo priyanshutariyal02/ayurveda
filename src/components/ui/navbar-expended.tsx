@@ -8,7 +8,6 @@ import { Menu } from "./navbar-menu";
 import { navItems } from "@/constants/navItems";
 
 const NavbarExpanded = ({ className }: { className?: string }) => {
-  const [active, setActive] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -48,7 +47,7 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex text-white text-link">
-          <Menu setActive={setActive} className="flex items-center gap-6">
+          <Menu  className="flex items-center gap-6">
             {navItems.slice(0, navItems.length - 1).map((item) => (
               <Link
                 key={item.name}
