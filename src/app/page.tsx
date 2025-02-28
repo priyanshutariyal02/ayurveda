@@ -1,13 +1,14 @@
 "use client";
 import About from "@/components/homepage/about";
 import Hero from "@/components/homepage/hero";
+import OurAchievements from "@/components/homepage/our-achievements";
 import OurProducts from "@/components/homepage/our-porducts";
 import OurSpecialties from "@/components/homepage/our-specialties";
 import Testimonials from "@/components/homepage/testimonials";
 import SmoothScroll from "@/components/smooth-scroll";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 
 const Home = () => {
   return (
@@ -52,6 +53,7 @@ const Home = () => {
           </div>
         </div>
 
+        <OurAchievements />
         <Testimonials />
       </div>
     </SmoothScroll>

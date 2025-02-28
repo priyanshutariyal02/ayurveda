@@ -23,14 +23,14 @@ const words = [
 
 const Hero = () => {
   return (
-    <div className="w-full p-5 relative">
-      <div className="w-full min-h-[95vh] overflow-hidden rounded-xl relative">
+    <div className="w-full p-0 relative">
+      <div className="w-full min-h-[95vh] overflow-hidden relative">
         <Image
           src="https://static.wixstatic.com/media/nsplsh_332d7361735067586e6f51~mv2_d_7952_5304_s_4_2.jpg/v1/fill/w_1827,h_996,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image%20by%20Annie%20Spratt.jpg"
           alt="Hero Image"
           layout="fill"
           objectFit="cover"
-          className="rounded-xl"
+          className="rounded-br-full"
         />
       </div>
 

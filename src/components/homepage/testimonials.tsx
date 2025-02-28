@@ -65,7 +65,7 @@ const Testimonials = () => {
   return (
     <div className="w-full py-5 lg:py-14 px-5 lg:px-28 text-gray-800">
       <div className="w-full flex flex-col lg:items-center lg:justify-center">
-        <p className="text-body font-semibold text-primary">Our Specialties</p>
+        <p className="text-body font-semibold text-primary">Testimonials</p>
         <h1 className="text-h2-display">
           What Our <span className="text-green-600 italic">Clients</span> say?
         </h1>

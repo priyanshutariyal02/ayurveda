@@ -13,7 +13,7 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
   return (
     <NavigationMenu
       className={cn(
-        "relative transition-all duration-300 ease-in-out h-auto pt-5 z-50",
+        "relative transition-all duration-300 ease-in-out h-auto z-50",
         className
       )}
     >
@@ -46,13 +46,13 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
         </button>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex text-white text-link">
+        <div className="hidden md:flex text-link">
           <Menu  className="flex items-center gap-6">
             {navItems.slice(0, navItems.length - 1).map((item) => (
               <Link
                 key={item.name}
                 href={item.link}
-                className="hover:bg-black py-1 px-3 rounded-full transition-all duration-300 ease-in-out"
+                className="hover:bg-background hover:text-white py-1 px-3 rounded-full transition-all duration-300 ease-in-out"
               >
                 {item.name}
               </Link>

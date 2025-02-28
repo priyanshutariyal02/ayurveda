@@ -23,6 +23,11 @@ interface OurProducts {
   link: string;
 }
 
+interface OurAchievements {
+  title: string;
+  value: number;
+}
+
 export const ourProducts: OurProducts[] = [
   {
     title: "Vatahari Oil",
@@ -82,5 +87,24 @@ export const ourSpecialties: OurSpecialties[] = [
     description:
       "Cervical spondylitis causes neck pain, treated in Ayurveda with herbs, Panchkarma, and posture correction.",
     img: s6,
+  },
+];
+
+export const achievements: OurAchievements[] = [
+  {
+    title: "Happy Patients",
+    value: 40000,
+  },
+  {
+    title: "Countries",
+    value: 30,
+  },
+  {
+    title: "Student",
+    value: 30000,
+  },
+  {
+    title: "Seminars",
+    value: 20,
   },
 ];

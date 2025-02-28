@@ -2,170 +2,180 @@
 
 import {
   IconBrandInstagram,
-  IconMapPin,
-  IconPhone,
-  IconMail,
   IconBrandLinkedin,
+  IconBrandFacebook,
+  IconBrandYoutube,
+  IconPhoneCall,
+  IconMail,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import React, { useState } from "react";
-// import PrivacyPolicy from "./privacy-policy";
-// import Disclaimer from "./disclaimer";
-// import StandardTerms from "./standard-terms";
 
 const Footer = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [selectedDocument, setSelectedDocument] = useState("");
-
-  const handleOpenModal = (doc: string) => {
-    setSelectedDocument(doc);
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-    setSelectedDocument("");
-  };
-
   const sections = [
     {
-      label: "Company",
+      label: "Menu",
       links: [
-        { name: "About Us", link: "/about" },
-        { name: "Services", link: "/services" },
-        { name: "Case Studies", link: "/caseStudies" },
-        { name: "Insights", link: "/insight" },
+        { name: "Home", link: "/" },
+        { name: "About", link: "/" },
+        { name: "Shop", link: "/" },
+        { name: "Appointments", link: "/" },
+        { name: "Courses", link: "/" },
+        { name: "Blogs", link: "/" },
       ],
     },
     {
-      label: "Useful Links",
+      label: "Legal",
       links: [
-        {
-          name: "Privacy Policy",
-          onClick: () => handleOpenModal("Privacy Policy"),
-        },
-        {
-          name: "Standard Terms",
-          onClick: () => handleOpenModal("Standard Terms"),
-        },
-        { name: "Disclaimer", onClick: () => handleOpenModal("Disclaimer") },
-        { name: "Contact", link: "/contact" },
+        { name: "Terms & Conditions", link: "/" },
+        { name: "Privacy Policy", link: "/" },
+        { name: "Shipping Policy", link: "/" },
+        { name: "Refund Policy", link: "/" },
+        { name: "FAQ", link: "/" },
+        { name: "Accessibility Statement", link: "/" },
       ],
     },
   ];
 
-  const locations = [
-    {
-      city: "New York",
-      address: "29 Briggs St, Hicksville, NY 11801",
-      phone: "+1 816-375-5732",
-      email: "hello@primevistaglobal.com",
-    },
-    {
-      city: "Dehradun",
-      address: "'1A RCR' Racecourse Road",
-      phone: "+91 999-726-7260",
-      email: "hello@primevistaglobal.com",
-    },
-  ];
+  // Newsletter Form State
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.includes("@")) {
+      setMessage("Please enter a valid email.");
+      return;
+    }
+
+    console.log("Email:", email);
+    console.log("Subscribed:", subscribed);
+
+    setMessage("Thank you for subscribing!");
+    setEmail("");
+    setSubscribed(false);
+  };
 
   return (
-    <footer className="p-5 lg:px-28 md:p-8 lg:p-10 absolute left-0 w-full">
-      <hr className="border-t mb-14" />
-      <div className="w-full flex flex-wrap justify-between gap-4 lg:justify-items-center">
-        <div className="w-full lg:w-1/4 flex flex-col gap-5">
-          <h1 className="text-4xl lg:text-6xl font-bold">
-            Tulsi <span className="text-secondary-green">Ayurveda</span>
-          </h1>
-          <p className="text-link">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam alias
-            provident deleniti perspiciatis quae distinctio similique accusamus
-            vitae commodi quasi.
-          </p>
-        </div>
-        {sections.map((section, index) => (
-          <div key={index} className="flex flex-col gap-4 items-start">
-            <h3 className="mb-4 font-medium text-h4 text-gray-700">
-              {section.label}
-            </h3>
-            <ul className="flex flex-col items-start gap-3 text-gray-500">
-              {section.links.map((link, linkIndex) => (
-                <li
-                  key={linkIndex}
-                  className="text-link hover:text-primary duration-200 cursor-pointer"
-                >
-                  {link.onClick ? (
-                    <button
-                      onClick={link.onClick}
-                      className="focus:outline-none"
-                    >
-                      {link.name}
-                    </button>
-                  ) : (
-                    <Link href={link.link}>{link.name}</Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <footer className="p-8 lg:px-28">
+      <hr className="border-t mb-10" />
 
-        {/* Location Column */}
-        <div className="flex flex-col gap-4 items-start">
-          <h3 className="mb-4 font-medium text-h4 text-gray-700">Locations</h3>
-          {locations.map((location, index) => (
-            <div key={index} className="mb-4 text-gray-500">
-              <h4 className="font-medium text-body text-gray-600">
-                {location.city}
-              </h4>
-              <div className="flex items-center gap-2 text-link">
-                <IconMapPin size={16} /> <span>{location.address}</span>
-              </div>
-              <div className="flex items-center gap-2 text-link">
-                <IconPhone size={16} /> <span>{location.phone}</span>
-              </div>
-              <div className="flex items-center gap-2 text-link">
-                <IconMail size={16} /> <span>{location.email}</span>
-              </div>
+      <div className="w-full flex flex-col lg:flex-row justify-between gap-14">
+        {/* Left Section */}
+        <div className="max-w-xl">
+          <h1 className="text-2xl font-bold">
+            Tulsi <span className="text-green-600">Ayurveda</span>
+          </h1>
+          <p className="text-gray-600 text-sm mt-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam alias
+            provident deleniti perspiciatis quae distinctio.
+          </p>
+          {/* Newsletter Section */}
+          <div className="flex flex-col gap-4 w-full mt-10">
+            <h3 className="text-lg font-semibold text-gray-700">
+              Let's Stay in Touch
+            </h3>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="border rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+              />
+
+              <label className="flex items-center gap-2 text-gray-700 text-sm">
+                <input
+                  type="checkbox"
+                  name="subscribe"
+                  checked={subscribed}
+                  onChange={(e) => setSubscribed(e.target.checked)}
+                  className="w-4 h-4 accent-green-600"
+                />
+                Subscribe to our newsletter
+              </label>
+
+              <button
+                type="submit"
+                className="bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition"
+              >
+                Submit
+              </button>
+
+              {message && <p className="text-sm text-green-600">{message}</p>}
+            </form>
+          </div>
+        </div>
+
+        {/* Navigation & Newsletter */}
+
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-10 w-full justify-items-center">
+          {sections.map((section, index) => (
+            <div key={index} className="flex flex-col gap-3">
+              <h3 className="text-lg font-semibold text-gray-700">
+                {section.label}
+              </h3>
+              <ul className="flex flex-col gap-2 text-gray-600 text-sm">
+                {section.links.map((link, linkIndex) => (
+                  <li key={linkIndex} className="hover:text-green-600">
+                    <Link href={link.link}>{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
+          {/* Contact Section */}
+          <div className="flex flex-col gap-5">
+            <h3 className="text-lg font-semibold text-gray-700">Contact</h3>
+            <div className="text-sm text-gray-700 space-y-2">
+              <p className="flex items-center gap-2">
+                <IconPhoneCall size={18} /> +91-6398383100
+              </p>
+              <p className="flex items-center gap-2">
+                <IconMail size={18} /> tulsiayurvedaclinic@gmail.com
+              </p>
+            </div>
+
+            <div className="flex gap-4 mt-2">
+              <Link href="/" target="_blank">
+                <IconBrandInstagram
+                  size={24}
+                  className="text-gray-600 hover:text-green-600"
+                />
+              </Link>
+              <Link href="/" target="_blank">
+                <IconBrandFacebook
+                  size={24}
+                  className="text-gray-600 hover:text-green-600"
+                />
+              </Link>
+              <Link href="/" target="_blank">
+                <IconBrandLinkedin
+                  size={24}
+                  className="text-gray-600 hover:text-green-600"
+                />
+              </Link>
+              <Link href="/" target="_blank">
+                <IconBrandYoutube
+                  size={24}
+                  className="text-gray-600 hover:text-green-600"
+                />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="flex flex-col-reverse gap-5 lg:gap-0 lg:flex-row justify-between items-center mt-8 border-t pt-4">
-        <p className="text-gray-600 text-center lg:text-left">
+
+      {/* Footer Bottom */}
+      <div className="w-full pt-6 flex justify-center border-t mt-8">
+        <p className="text-gray-600 text-center text-sm">
           © {new Date().getFullYear()} Tulsi Ayurveda. All rights reserved.
         </p>
-
-        <div className="flex space-x-4">
-          <Link href={"/"} target="blank">
-            <IconBrandLinkedin
-              className="hover:text-gray-400 cursor-pointer"
-              size={20}
-            />
-          </Link>
-          <Link href={"/"} target="blank">
-            <IconBrandInstagram
-              className="hover:text-gray-400 cursor-pointer"
-              size={20}
-            />
-          </Link>
-        </div>
       </div>
-
-      {/* Modal */}
-      {/* {openModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-          {selectedDocument === "Privacy Policy" && (
-            <PrivacyPolicy handleCloseModal={handleCloseModal} />
-          )}
-          {selectedDocument === "Disclaimer" && (
-            <Disclaimer handleCloseModal={handleCloseModal} />
-          )}
-          {selectedDocument === "Standard Terms" && (
-            <StandardTerms handleCloseModal={handleCloseModal} />
-          )}
-        </div>
-      )} */}
     </footer>
   );
 };
