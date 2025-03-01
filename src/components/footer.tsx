@@ -58,7 +58,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="p-8 lg:px-28">
+    <footer className="p-8 lg:px-28 relative">
       <hr className="border-t mb-10" />
 
       <div className="w-full flex flex-col lg:flex-row justify-between gap-14">
@@ -113,7 +113,7 @@ const Footer = () => {
 
         {/* Navigation & Newsletter */}
 
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-10 w-full justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-10 w-full lg:justify-items-center">
           {sections.map((section, index) => (
             <div key={index} className="flex flex-col gap-3">
               <h3 className="text-lg font-semibold text-gray-700">

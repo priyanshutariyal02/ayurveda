@@ -35,7 +35,7 @@ export default {
 
       colors: {
         primary: "#f59e0b",
-        background: "#0a0a0a",
+        background: "#171717",
         secondary: {
           red: "#FF0029",
           pink: "#FF2DA9",

@@ -14,7 +14,7 @@ const NavbarSimple = ({
 }) => {
   return (
     <div
-      className={`relative w-full hidden md:flex items-center justify-center p-2 border ${className}`}
+      className={`relative w-full hidden md:flex items-center justify-center p-2 ${className}`}
     >
       <div
         className={cn(

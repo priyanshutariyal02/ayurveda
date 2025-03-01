@@ -11,6 +11,12 @@ import p2 from "../app/assets/p2.avif";
 import p3 from "../app/assets/p3.avif";
 import p4 from "../app/assets/p4.avif";
 
+import g1 from "../app/assets/g1.avif";
+import g2 from "../app/assets/g2.avif";
+import g3 from "../app/assets/g3.avif";
+import g4 from "../app/assets/g4.avif";
+import g5 from "../app/assets/g5.avif";
+
 interface OurSpecialties {
   title: string;
   description: string;
@@ -28,6 +34,14 @@ interface OurAchievements {
   value: number;
 }
 
+interface About {
+  heading: string;
+  desc: string;
+}
+
+interface Gallery {
+  name: StaticImageData;
+}
 export const ourProducts: OurProducts[] = [
   {
     title: "Vatahari Oil",
@@ -106,5 +120,61 @@ export const achievements: OurAchievements[] = [
   {
     title: "Seminars",
     value: 20,
+  },
+];
+
+// about
+export const about: About[] = [
+  {
+    heading: "Authentic Ayurvedic Care",
+    desc: "Rooted in ancient Ayurvedic principles while embracing modern innovation.",
+  },
+  {
+    heading: "Holistic Healing Approach",
+    desc: "Focuses on overall well-being rather than just treating symptoms.",
+  },
+  {
+    heading: "Experienced Ayurvedic Doctors",
+    desc: "A team of qualified experts dedicated to natural healing.",
+  },
+  {
+    heading: "Personalized Treatment Plans",
+    desc: "Customized solutions based on individual health needs.",
+  },
+  {
+    heading: "Online Consultation Services",
+    desc: "Easy access to Ayurvedic expertise from anywhere in the world.",
+  },
+  {
+    heading: "Natural & Time-Tested Remedies",
+    desc: "Using herbs, therapies, and lifestyle changes for sustainable health.",
+  },
+  {
+    heading: "Global Reach",
+    desc: "Spreading Ayurvedic wisdom beyond borders.",
+  },
+  {
+    heading: "Commitment to Wellness",
+    desc: "Aiming to transform lives with accessible and reliable Ayurvedic solutions.",
+  },
+];
+
+// gallery
+
+export const gallery: Gallery[] = [
+  {
+    name: g1,
+  },
+  {
+    name: g2,
+  },
+  {
+    name: g3,
+  },
+  {
+    name: g4,
+  },
+  {
+    name: g5,
   },
 ];

@@ -25,7 +25,7 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-gray-800"
+          className="lg:hidden p-2 text-gray-800"
           onClick={() => setIsSidebarOpen(true)}
         >
           <span className="sr-only">Open menu</span>
@@ -46,7 +46,7 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
         </button>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex text-link">
+        <div className="hidden lg:flex text-link">
           <Menu  className="flex items-center gap-6">
             {navItems.slice(0, navItems.length - 1).map((item) => (
               <Link
@@ -61,7 +61,7 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
         </div>
         <Link
           href={"/"}
-          className="border border-black text-black-500 px-6 py-2 rounded-full 
+          className="border hidden lg:block border-black text-black-500 px-6 py-2 rounded-full 
              transition-all duration-300 ease-in-out 
              hover:bg-black hover:border-black hover:text-white "
         >
