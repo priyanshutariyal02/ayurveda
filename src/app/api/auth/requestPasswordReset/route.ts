@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 import { User } from "@/models/user.models";
 import { generateOTP } from "@/utils/generateOtp";
 import { sendEmail } from "@/utils/sendEmail";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: Request) {
   try {
     const { email }: { email: string } = await req.json();
     const user = await User.findOne({ email });

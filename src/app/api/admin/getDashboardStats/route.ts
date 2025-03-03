@@ -7,7 +7,7 @@ interface OrderDocument extends Document {
   createdAt: Date;
   orderStatus: string;
 }
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     const totalProducts = await Product.countDocuments();
     const totalOrders = await Order.countDocuments();

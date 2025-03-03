@@ -1,9 +1,8 @@
-import { resetPassword } from "@/controllers/auth.controllers";
 import { User } from "@/models/user.models";
 import bcrypt from "bcryptjs";
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: Request) {
   try {
     const {
       email,

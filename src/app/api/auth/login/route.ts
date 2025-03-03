@@ -1,9 +1,9 @@
 import { User } from "@/models/user.models";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: Request, res: NextResponse) {
   try {
     const { email, password }: { email: string; password: string } =
       await req.json();

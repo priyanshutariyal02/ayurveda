@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { User } from "@/models/user.models";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: Request) {
   try {
     const userId = req.headers.get("userId");
     const user = await User.findById(userId);
