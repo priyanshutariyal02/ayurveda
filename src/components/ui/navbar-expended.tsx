@@ -6,48 +6,32 @@ import { cn } from "@/lib/utils";
 import { NavigationMenu } from "@radix-ui/react-navigation-menu";
 import { Menu } from "./navbar-menu";
 import { navItems } from "@/constants/navItems";
+import { IconShoppingBag, IconMenu2, IconX } from "@tabler/icons-react";
+import LoginDialog from "../homepage/login-dialog";
 
 const NavbarExpanded = ({ className }: { className?: string }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
     <NavigationMenu
       className={cn(
-        "relative transition-all duration-300 ease-in-out h-auto z-50",
+        "relative transition-all duration-300 ease-in-out h-auto z-40",
         className
       )}
     >
-      <div className="flex items-center justify-between mx-auto max-w-screen-xl px-4 py-2">
+      {(isSidebarOpen || isCartOpen) && (
+        <div className="fixed inset-y-0 w-full top-0 left-0 bg-background/80 z-50"></div>
+      )}
+      <div className="flex items-center justify-between mx-auto max-w-screen-xl px-4 py-3">
         {/* Logo */}
-        <Link href="/" className="text-lg font-bold">
+        <Link href="/" className="text-body font-bold">
           Logo
         </Link>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden p-2 text-gray-800"
-          onClick={() => setIsSidebarOpen(true)}
-        >
-          <span className="sr-only">Open menu</span>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-
         {/* Desktop Navigation */}
         <div className="hidden lg:flex text-link">
-          <Menu  className="flex items-center gap-6">
+          <Menu className="flex items-center gap-6">
             {navItems.slice(0, navItems.length - 1).map((item) => (
               <Link
                 key={item.name}
@@ -59,14 +43,58 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
             ))}
           </Menu>
         </div>
-        <Link
-          href={"/"}
-          className="border hidden lg:block border-black text-black-500 px-6 py-2 rounded-full 
-             transition-all duration-300 ease-in-out 
-             hover:bg-black hover:border-black hover:text-white "
+
+        {/* Actions (Cart & Login) */}
+        <div className="flex items-center gap-5">
+          {/* Cart Icon */}
+          <div className="relative">
+            <span className="bg-secondary rounded-full flex items-center justify-center text-xs w-4 h-4 absolute top-0 -right-2 font-semibold text-white">
+              0
+            </span>
+            <IconShoppingBag
+              onClick={() => setIsCartOpen(!isCartOpen)}
+              className="w-7 h-7 text-background cursor-pointer hover:text-background/70 duration-200"
+            />
+          </div>
+
+          {/* Login Button */}
+          <LoginDialog />
+
+          {/* Contact Button */}
+          <Link
+            href="/contact"
+            className="border hidden lg:block border-black px-6 py-2 rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:text-white"
+          >
+            Contact
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            aria-label="menu"
+            className="lg:hidden p-2"
+            onClick={() => setIsSidebarOpen(true)}
+          >
+            <IconMenu2 className="w-7 h-7 text-background" />
+          </button>
+        </div>
+      </div>
+
+      {/* Cart Sidebar */}
+      <div
+        className={`fixed inset-y-0 right-0 w-[20rem] lg:w-1/3 bg-white text-black transform ${
+          isCartOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out z-50`}
+      >
+        {/* Close Button */}
+        <button
+          aria-label="close"
+          type="button"
+          className="absolute top-4 right-4"
+          onClick={() => setIsCartOpen(false)}
         >
-          Contact
-        </Link>
+          <IconX className="w-7 h-7 text-black" />
+        </button>
+        <div className="p-4">Your cart is empty.</div>
       </div>
 
       {/* Sidebar Menu (Mobile) */}
@@ -77,11 +105,12 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
       >
         {/* Close Button */}
         <button
+          aria-label="close"
           type="button"
-          className="absolute top-4 right-4 text-2xl"
+          className="absolute top-4 right-4"
           onClick={() => setIsSidebarOpen(false)}
         >
-          &times;
+          <IconX className="w-7 h-7 text-black" />
         </button>
 
         {/* Sidebar Content */}

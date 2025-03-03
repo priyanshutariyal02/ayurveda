@@ -178,3 +178,89 @@ export const gallery: Gallery[] = [
     name: g5,
   },
 ];
+
+// shop
+
+export interface Product {
+  id: number;
+  name: string;
+  img: string;
+  sub: string;
+  desc: string;
+  tag: string;
+  size: string;
+  price: number;
+}
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: "Combo - 5 Vatahari Oil",
+    img: "https://static.wixstatic.com/media/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png/v1/fill/w_431,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png",
+    sub: "Tulsi Ayurveda Exculsive Offer",
+    tag: "New Offer",
+    size: "500ml",
+    price: 850,
+    desc: "",
+  },
+  {
+    id: 2,
+    name: "Combo - 3 Vatahari Oil",
+    img: "https://static.wixstatic.com/media/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png/v1/fill/w_431,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png",
+    sub: "Tulsi Ayurveda Exculsive Offer",
+    tag: "New Offer",
+    size: "500ml",
+    price: 850,
+    desc: "",
+  },
+  {
+    id: 3,
+    name: "Combo - Vatahari Oil + Potli for pain relief",
+    img: "https://static.wixstatic.com/media/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png/v1/fill/w_431,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png",
+    sub: "Tulsi Ayurveda Exculsive Offer",
+    tag: "",
+    size: "500ml",
+    price: 850,
+    desc: "",
+  },
+  {
+    id: 4,
+    name: "SWARNPRASHAN - Booster for your child",
+    img: "https://static.wixstatic.com/media/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png/v1/fill/w_431,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png",
+    sub: "Tulsi Ayurveda Exculsive Offer",
+    tag: "",
+    size: "500ml",
+    price: 850,
+    desc: "",
+  },
+  {
+    id: 5,
+    name: "Potl -For Pain relief",
+    img: "https://static.wixstatic.com/media/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png/v1/fill/w_431,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png",
+    sub: "Tulsi Ayurveda Exculsive Offer",
+    tag: "New Offer",
+    size: "500ml",
+    price: 850,
+    desc: "",
+  },
+  {
+    id: 6,
+    name: "Vita 40 (500g)",
+    img: "https://static.wixstatic.com/media/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png/v1/fill/w_431,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png",
+    sub: "Tulsi Ayurveda Exculsive Offer",
+    tag: "",
+    size: "500ml",
+    price: 850,
+    desc: "",
+  },
+  {
+    id: 7,
+    name: "Vatahari - Pain Relief Oil",
+    img: "https://static.wixstatic.com/media/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png/v1/fill/w_431,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c58084_a0899607d3894c73afb204e8aa4a467b~mv2.png",
+    sub: "Tulsi Ayurveda Exculsive Offer",
+    tag: "",
+    size: "500ml",
+    price: 850,
+    desc: "Vatahari Oil is a powerful Ayurvedic medicated oil designed to relieve joint pain, muscle stiffness, and inflammation. It is enriched with anti-inflammatory herbs that help balance Vata dosha, making it effective for conditions like arthritis, spondylitis, and muscle stiffness. Regular massage with Vatari Oil improves mobility, reduces swelling, and promotes natural healing. Ideal for those seeking long-term relief through Ayurveda.",
+  },
+];

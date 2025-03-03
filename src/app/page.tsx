@@ -13,7 +13,7 @@ import React from "react";
 const Home = () => {
   return (
     <SmoothScroll>
-      <div className="w-full">
+      <div className="w-full bg-white">
         {/* Ensure proper spacing */}
         <div className="relative -top-12">
           <Hero />

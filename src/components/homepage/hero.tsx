@@ -30,7 +30,7 @@ const Hero = () => {
           alt="Hero Image"
           layout="fill"
           objectFit="cover"
-          className="rounded-br-full"
+          className="rounded-br-full object-cover"
         />
       </div>
 

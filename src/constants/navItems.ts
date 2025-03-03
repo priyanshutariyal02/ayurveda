@@ -19,7 +19,7 @@ export const navItems = [
   },
   {
     name: "Shop",
-    link: "/",
+    link: "/shop",
   },
   {
     name: "Appoinments",

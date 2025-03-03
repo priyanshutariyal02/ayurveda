@@ -14,11 +14,11 @@ const NavbarSimple = ({
 }) => {
   return (
     <div
-      className={`relative w-full hidden md:flex items-center justify-center p-2 ${className}`}
+      className={`relative w-full hidden md:flex items-center justify-center z-30 p-2 ${className}`}
     >
       <div
         className={cn(
-          `fixed top-4 md:top-4 inset-x-0  max-w-md md:max-w-xl mx-auto z-50`,
+          `fixed top-4 md:top-4 inset-x-0  max-w-md md:max-w-xl mx-auto z-40`,
           className
         )}
       >
