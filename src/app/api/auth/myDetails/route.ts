@@ -1,12 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyToken } from "@/middlewares/verifytoken";
-import { myDetails } from "@/controllers/auth.controllers";
+import { User } from "@/models/user.models";
 
 export async function GET(req: NextRequest) {
-  const user = verifyToken(req);
-  if (!user) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  try {
+    const userId = req.headers.get("userId");
+    const user = await User.findById(userId);
+    if (!user) {
+      return NextResponse.json(
+        { message: "Cannot find user" },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json({ user }, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: "Error getting user details!", error },
+      { status: 500 }
+    );
   }
-
-  return myDetails(req);
 }
