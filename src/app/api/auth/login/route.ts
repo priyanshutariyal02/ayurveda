@@ -1,6 +1,6 @@
 import { login } from "@/controllers/auth.controllers";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-export async function POST(req: NextRequest, res: NextResponse) {
-  return login(req, res);
+export async function POST(req: NextRequest) {
+  return login(req);
 }

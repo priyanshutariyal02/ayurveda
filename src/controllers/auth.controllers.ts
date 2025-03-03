@@ -47,7 +47,7 @@ const signup = async (req: NextRequest, res: NextResponse) => {
   }
 };
 
-const login = async (req: NextRequest, res: NextResponse) => {
+const login = async (req: NextRequest) => {
   try {
     const { email, password }: { email: string; password: string } =
       await req.json();
