@@ -10,3 +10,4 @@ export async function GET(req: NextRequest) {
   // Replace with real stats fetching logic
   return NextResponse.json({ message: "Dashboard stats", stats: {} });
 }
+

@@ -23,6 +23,7 @@
     "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.4.7",
+    "jsonwebtoken": "^9.0.2",
     "lenis": "^1.1.21",
     "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.475.0",
