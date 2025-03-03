@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request, res: NextResponse) {
+export async function POST(req: Request) {
   try {
     const { email, password }: { email: string; password: string } =
       await req.json();
@@ -27,20 +27,26 @@ export async function POST(req: Request, res: NextResponse) {
         email: existingUser.email,
         role: existingUser.role,
       },
-      process.env.JWT_KEY as string
+      process.env.JWT_KEY as string,
+      { expiresIn: "1d" }
     );
 
-    res.cookies.set("token", jwtToken, {
+    const response = NextResponse.json(
+      { existingUser, jwtToken },
+      { status: 200 }
+    );
+
+    response.cookies.set("token", jwtToken, {
       path: "/",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
       httpOnly: true,
       sameSite: "lax",
     });
 
-    return NextResponse.json({ existingUser, jwtToken }, { status: 200 });
+    return response;
   } catch (error: any) {
     return NextResponse.json(
-      { message: "Error logging in!", error },
+      { message: "Error logging in!", error: error.message },
       { status: 500 }
     );
   }
