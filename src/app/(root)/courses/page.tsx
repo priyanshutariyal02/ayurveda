@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 import c1 from "../../assets/c1.avif";
 import c2 from "../../assets/c2.avif";
@@ -10,6 +12,18 @@ import { offCoursesList, onCoursesList } from "@/constants/constant";
 import Link from "next/link";
 
 const Courses = () => {
+  const [active, setActive] = useState<string | null>(null);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    setActive(id);
+  };
   return (
     <SmoothScroll>
       <div className="w-full px-5 lg:px-16 py-20 relative">
@@ -24,10 +38,16 @@ const Courses = () => {
             easy-to-follow lessons and transform your health naturally
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4">
-            <button className="border px-5 py-2.5 rounded-full border-background hover:text-white hover:bg-background duration-200">
+            <button
+              onClick={() => scrollToSection("online")}
+              className="border px-5 py-2.5 rounded-full border-background hover:text-white hover:bg-background duration-200"
+            >
               Online Courses
             </button>
-            <button className="border px-5 py-2.5 rounded-full border-background hover:text-white hover:bg-background duration-200">
+            <button
+              onClick={() => scrollToSection("offline")}
+              className="border px-5 py-2.5 rounded-full border-background hover:text-white hover:bg-background duration-200"
+            >
               Offline Courses
             </button>
           </div>
@@ -57,7 +77,10 @@ const Courses = () => {
           />
         </div>
 
-        <div className="lg:mt-28 w-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div
+          className="lg:mt-28 w-full flex items-center justify-center px-4 sm:px-6 lg:px-8"
+          id="online"
+        >
           <div className="w-full max-w-7xl">
             <h3 className="mb-12 font-semibold text-center text-h4">
               Online Courses List
@@ -89,7 +112,10 @@ const Courses = () => {
           </div>
         </div>
 
-        <div className="mt-16 lg:mt-28 w-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div
+          className="mt-16 lg:mt-28 w-full flex items-center justify-center px-4 sm:px-6 lg:px-8"
+          id="offline"
+        >
           <div className="w-full max-w-7xl">
             <h3 className="mb-12 font-semibold text-center text-h4">
               Offline Courses List
