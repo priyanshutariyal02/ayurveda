@@ -8,6 +8,8 @@ import { Menu } from "./navbar-menu";
 import { navItems } from "@/constants/navItems";
 import { IconShoppingBag, IconMenu2, IconX } from "@tabler/icons-react";
 import LoginDialog from "../homepage/login-dialog";
+import CartSidebar from "../cart-sidebar";
+import SidebarMenu from "../sidebar-menu";
 
 const NavbarExpanded = ({ className }: { className?: string }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -23,10 +25,11 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
       {(isSidebarOpen || isCartOpen) && (
         <div className="fixed inset-y-0 w-full top-0 left-0 bg-background/80 z-50"></div>
       )}
+
       <div className="flex items-center justify-between mx-auto max-w-screen-xl px-4 py-3">
         {/* Logo */}
-        <Link href="/" className="text-body font-bold">
-          Logo
+        <Link href="/" className="text-body font-bold drop-shadow-sm">
+          <span className="text-secondary">Tulsi</span> Ayurveda
         </Link>
 
         {/* Desktop Navigation */}
@@ -80,53 +83,13 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
       </div>
 
       {/* Cart Sidebar */}
-      <div
-        className={`fixed inset-y-0 right-0 w-[20rem] lg:w-1/3 bg-white text-black transform ${
-          isCartOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out z-50`}
-      >
-        {/* Close Button */}
-        <button
-          aria-label="close"
-          type="button"
-          className="absolute top-4 right-4"
-          onClick={() => setIsCartOpen(false)}
-        >
-          <IconX className="w-7 h-7 text-black" />
-        </button>
-        <div className="p-4">Your cart is empty.</div>
-      </div>
+      <CartSidebar isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
 
       {/* Sidebar Menu (Mobile) */}
-      <div
-        className={`fixed inset-y-0 left-0 w-72 max-w-[90vw] bg-white text-black transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out z-50 shadow-lg`}
-      >
-        {/* Close Button */}
-        <button
-          aria-label="close"
-          type="button"
-          className="absolute top-4 right-4"
-          onClick={() => setIsSidebarOpen(false)}
-        >
-          <IconX className="w-7 h-7 text-black" />
-        </button>
-
-        {/* Sidebar Content */}
-        <div className="flex flex-col items-start pl-8 pt-10 space-y-4">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.link}
-              className="text-sm py-2 hover:text-blue-400"
-              onClick={() => setIsSidebarOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </div>
+      <SidebarMenu
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
     </NavigationMenu>
   );
 };
