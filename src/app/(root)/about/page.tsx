@@ -37,9 +37,9 @@ const About = () => {
 
   return (
     <SmoothScroll>
-      <div className="w-full px-5 lg:px-16 py-16 text-gray-900">
+      <div className="w-full px-5 lg:px-16 py-16">
         <div className="w-full flex flex-col justify-center items-center gap-12">
-          <h1 className="text-h2-display text-center text-gray-700">
+          <h1 className="text-h2-display text-center text-background">
             About Us
           </h1>
 
@@ -68,7 +68,7 @@ const About = () => {
               {about.map((item, index) => (
                 <motion.li
                   key={index}
-                  className="p-6 bg-white shadow-lg rounded-lg border-l-4 border-secondary-green hover:shadow-xl transition-all"
+                  className="p-6 bg-white shadow-lg rounded-lg border-l-4 border-secondary hover:shadow-xl transition-all"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}

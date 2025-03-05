@@ -23,11 +23,11 @@ export const navItems = [
   },
   {
     name: "Appoinments",
-    link: "/",
+    link: "/appointment",
   },
   {
     name: "Courses",
-    link: "/",
+    link: "/courses",
   },
   {
     name: "Blogs",
@@ -35,6 +35,6 @@ export const navItems = [
   },
   {
     name: "Contact",
-    link: "/",
+    link: "/contact",
   },
 ];

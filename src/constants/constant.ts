@@ -17,6 +17,11 @@ import g3 from "../app/assets/g3.avif";
 import g4 from "../app/assets/g4.avif";
 import g5 from "../app/assets/g5.avif";
 
+import c4 from "../app/assets/c4.avif";
+
+import ofc1 from "../app/assets/ofc1.avif";
+import ofc2 from "../app/assets/ofc2.avif";
+
 interface OurSpecialties {
   title: string;
   description: string;
@@ -262,5 +267,50 @@ export const products: Product[] = [
     size: "500ml",
     price: 850,
     desc: "Vatahari Oil is a powerful Ayurvedic medicated oil designed to relieve joint pain, muscle stiffness, and inflammation. It is enriched with anti-inflammatory herbs that help balance Vata dosha, making it effective for conditions like arthritis, spondylitis, and muscle stiffness. Regular massage with Vatari Oil improves mobility, reduces swelling, and promotes natural healing. Ideal for those seeking long-term relief through Ayurveda.",
+  },
+];
+
+// courses
+interface OnCoursesList {
+  name: string;
+  img: StaticImageData;
+  desc: string;
+  link: string;
+}
+
+export const onCoursesList: OnCoursesList[] = [
+  {
+    name: "Nasya Dhoompan",
+    img: c4,
+    desc: "Nasya & Dhoompan: Ayurvedic therapies for respiratory health, mental clarity, and detoxification.",
+    link: "/",
+  },
+];
+
+interface OffCoursesList {
+  name: string;
+  img: StaticImageData;
+  desc: string;
+  price: number;
+  sub: string;
+  link: string;
+}
+
+export const offCoursesList: OffCoursesList[] = [
+  {
+    name: "1 Month Panchkarma Training",
+    img: ofc1,
+    desc: "Designed for the general public, this course offers a foundational understanding of Panchakarma therapy, including detoxification techniques, practical applications, and Ayurvedic wellness practices, making it accessible to all health enthusiasts.",
+    price: 20000,
+    sub: "*Excluding registration fee",
+    link: "/",
+  },
+  {
+    name: "2 Months Clinical Training",
+    img: ofc2,
+    desc: "Specifically designed for BAMS doctors, this program provides hands-on training in clinical research methodologies, regulatory guidelines, and real-world trial applications, equipping professionals with essential skills for the field of clinical studies.",
+    price: 30000,
+    sub: "*Excluding registration fee",
+    link: "/",
   },
 ];
