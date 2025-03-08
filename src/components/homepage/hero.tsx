@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { TypewriterEffectSmooth } from "../ui/typewriter-effect.tsx";
+import Link from "next/link.js";
 
 const words = [
   {
@@ -82,12 +83,12 @@ const Hero = () => {
             Real Ayurveda with Tulsi Ayurveda
           </p> */}
           <TypewriterEffectSmooth words={words} />
-          <button
-            type="button"
+          <Link
+          href={'/appointment'}
             className="mt-4 text-link uppercase rounded-full bg-white border border-white hover:bg-transparent hover:text-white text-black py-3 px-6 duration-150"
           >
             Book Your Consultation
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -22,25 +22,9 @@ h6 {
   @apply text-h6 text-gray-800;
 }
 
-p{
+p {
   @apply text-gray-700;
 }
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #f59e0b;
-  scroll-behavior: smooth;
-  border-radius: 10px;
-}
-
-
 
 @layer base {
   :root {
@@ -97,8 +81,6 @@ p{
     --chart-5: 340 75% 55%;
   }
 }
-
-
 
 @layer base {
   * {

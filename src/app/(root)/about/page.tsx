@@ -92,7 +92,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
         >
           <Link
-            href={"#"}
+            href={"/appointment"}
             className="px-8 py-3 text-lg font-medium bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all"
           >
             Consult Now

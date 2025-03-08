@@ -123,7 +123,7 @@ const Courses = () => {
             <div className="flex flex-wrap items-start justify-center gap-12">
               {offCoursesList.map((course) => (
                 <div
-                  key={course.name}
+                  key={course.id}
                   className="bg-neutral-100 w-[26rem] rounded-xl p-5 flex flex-col items-start gap-5 drop-shadow-lg"
                 >
                   <h4 className="text-body font-semibold text-left w-full">
@@ -144,7 +144,7 @@ const Courses = () => {
                     <p className="text-sm font-semibold">{course.sub}</p>
                   </div>
                   <Link
-                    href={course.link}
+                    href={`/courses/${course.id}`}
                     className="bg-background hover:bg-background/70 text-white text-mini px-4 py-2 rounded-xl transition-colors duration-200"
                   >
                     Enroll Now

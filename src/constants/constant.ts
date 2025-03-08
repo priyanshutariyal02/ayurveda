@@ -288,29 +288,107 @@ export const onCoursesList: OnCoursesList[] = [
 ];
 
 interface OffCoursesList {
+  id: number;
   name: string;
   img: StaticImageData;
   desc: string;
   price: number;
+  price2: number;
   sub: string;
-  link: string;
+  q1: string;
+  ans1: string;
+  page: {
+    q: string;
+    ans: {
+      theory: string[];
+      practical: string[];
+    };
+  }[];
 }
 
 export const offCoursesList: OffCoursesList[] = [
   {
+    id: 1,
     name: "1 Month Panchkarma Training",
     img: ofc1,
     desc: "Designed for the general public, this course offers a foundational understanding of Panchakarma therapy, including detoxification techniques, practical applications, and Ayurvedic wellness practices, making it accessible to all health enthusiasts.",
     price: 20000,
+    price2: 25000,
     sub: "*Excluding registration fee",
-    link: "/",
+    q1: "Who is this for?",
+    ans1: "Anyone interested in Ayurveda and natural healing. Wellness practitioners looking to integrate Panchakarma knowledge. Individuals seeking to learn self-care and detox therapies.",
+    page: [
+      {
+        q: "What You Will Learn?",
+        ans: {
+          theory: [
+            "Basics of Ayurveda and Tridosha Concept",
+            "Understanding Panchakarma: Purpose & Benefits",
+            "Role of Diet and Lifestyle in Detoxification",
+            "Herbs and Oils Used in Panchakarma",
+            "Indications & Contraindications of Panchakarma",
+          ],
+          practical: [
+            "Introduction to Abhyanga (Ayurvedic Massage)",
+            "Snehana & Swedana (Oleation & Sudation Techniques)",
+            "Nasya (Nasal Therapy) and its Application",
+            "Basti (Enema Therapy) - Basics & Procedure",
+            "Vamana & Virechana Overview (Demo-Based Learning)",
+            "Home-Based Detox Practices",
+          ],
+        },
+      },
+    ],
   },
   {
+    id: 2,
     name: "2 Months Clinical Training",
     img: ofc2,
     desc: "Specifically designed for BAMS doctors, this program provides hands-on training in clinical research methodologies, regulatory guidelines, and real-world trial applications, equipping professionals with essential skills for the field of clinical studies.",
     price: 30000,
+    price2: 35000,
     sub: "*Excluding registration fee",
-    link: "/",
+    q1: "Who is this for?",
+    ans1: "BAMS graduates looking for hands-on clinical exposure Ayurvedic doctors aiming to refine Panchakarma therapy skills Practitioners seeking real-world patient management experience",
+    page: [
+      {
+        q: "What You Will Learn?",
+        ans: {
+          theory: [
+            "Clinical Diagnosis in Ayurveda",
+            "Panchakarma Case Selection & Patient Assessment",
+            "Pharmacology & Formulation Studies",
+            "Practical Guidelines for Ayurvedic Treatments",
+            "Modern Correlation & Evidence-Based Ayurveda",
+          ],
+          practical: [
+            "Hands-on Panchakarma Procedures",
+            "Patient Consultation & Management",
+            "Prescription Writing & Ayurvedic Treatment Planning",
+            "Real-time Clinical Case Discussions",
+            "Hospital/Clinic-Based Training Sessions",
+            "Ethics & Documentation in Ayurveda Practice",
+          ],
+        },
+      },
+    ],
+  },
+];
+
+// appointments
+
+interface Appointment {
+  name: string;
+  link: string;
+}
+
+export const appointment: Appointment[] = [
+  {
+    name: "Dr. Ankit Agarwal",
+    link: "",
+  },
+  {
+    name: "Dr. Anshika",
+    link: "",
   },
 ];

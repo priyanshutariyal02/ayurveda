@@ -141,25 +141,25 @@ const Footer = () => {
             </div>
 
             <div className="flex gap-4 mt-2">
-              <Link href="/" target="_blank">
+              <Link href="https://www.instagram.com/tulsiayurveda/" target="blank">
                 <IconBrandInstagram
                   size={24}
                   className="text-gray-600 hover:text-green-600"
                 />
               </Link>
-              <Link href="/" target="_blank">
+              <Link href="https://www.facebook.com/tulsiclinic/" target="blank">
                 <IconBrandFacebook
                   size={24}
                   className="text-gray-600 hover:text-green-600"
                 />
               </Link>
-              <Link href="/" target="_blank">
+              <Link href="https://www.linkedin.com/in/dr-ankit-aggarwal-1931717a/" target="blank">
                 <IconBrandLinkedin
                   size={24}
                   className="text-gray-600 hover:text-green-600"
                 />
               </Link>
-              <Link href="/" target="_blank">
+              <Link href="https://www.youtube.com/@Tulsi_ayurveda/videos" target="blank">
                 <IconBrandYoutube
                   size={24}
                   className="text-gray-600 hover:text-green-600"
