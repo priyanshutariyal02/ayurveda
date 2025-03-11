@@ -28,13 +28,13 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
 
       <div className="flex items-center justify-between mx-auto max-w-screen-xl px-4 py-3">
         {/* Logo */}
-        <Link href="/" className="text-body font-bold drop-shadow-sm">
+        <Link href="/" className="text-body text-white font-bold drop-shadow-sm">
           <span className="text-secondary">Tulsi</span> Ayurveda
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex text-link">
-          <Menu className="flex items-center gap-6">
+          <Menu className="flex text-white items-center gap-6">
             {navItems.slice(0, navItems.length - 1).map((item) => (
               <Link
                 key={item.name}

@@ -1,10 +1,13 @@
 "use client";
 import About from "@/components/homepage/about";
+import Experience from "@/components/homepage/experience";
 import Hero from "@/components/homepage/hero";
 import OurAchievements from "@/components/homepage/our-achievements";
 import OurProducts from "@/components/homepage/our-porducts";
 import OurSpecialties from "@/components/homepage/our-specialties";
+import SlideSection from "@/components/homepage/slide-section";
 import Testimonials from "@/components/homepage/testimonials";
+import WhyUs from "@/components/homepage/why-us";
 import SmoothScroll from "@/components/smooth-scroll";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,8 +21,11 @@ const Home = () => {
         <div className="relative -top-12">
           <Hero />
         </div>
+        <SlideSection />
+        <Experience />
         {/* Add margin to avoid overlapping */}
         <About />
+        <WhyUs />
         <OurSpecialties />
         <OurProducts />
         <div className="w-full flex items-center justify-center pb-16">

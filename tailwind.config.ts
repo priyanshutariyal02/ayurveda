@@ -33,7 +33,7 @@ export default {
         "64px": "4rem",
       },
       colors: {
-        primary: "#f59e0b",
+        primary: "#D39761",
         background: "#171717",
         secondary: "#16a34a",
         foreground: "hsl(var(--foreground))",

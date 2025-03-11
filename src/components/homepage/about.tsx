@@ -1,40 +1,50 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import aboutImage from "../../app/assets/about.png";
 
 const About = () => {
   return (
-    <div className="w-full flex items-center flex-col pb-10">
-      <h1 className="text-body text-primary font-semibold">About Us</h1>
-      <h1 className="text-h2-display">
-        What is <span className="text-green-600 italic">Tulsi</span> Ayurvada?
-      </h1>
-      <p className="max-w-6xl text-link text-center mt-4">
-        At Tulsi Ayurveda, we are committed to transforming lives through
-        authentic Ayurvedic treatments that restore balance and promote holistic
-        well-being. Rooted in the ancient wisdom of Ayurveda, our approach
-        integrates traditional healing practices with modern advancements,
-        ensuring personalized care for every individual. Our mission extends
-        beyond treatment—we aim to educate, empower, and inspire individuals to
-        embrace an Ayurvedic lifestyle for long-term health. With a strong focus
-        on preventive care and natural healing, we also nurture the next
-        generation of Vaidyas, fostering a future where Ayurveda is recognized
-        as a global primary healthcare system. At Tulsi Ayurveda, we believe in
-        not just treating ailments but transforming lives through the timeless
-        wisdom of Ayurveda.
-      </p>
-      <Link
-        href={"/about"}
-        className="mt-6 px-6 py-3 border border-primary rounded-full text-primary hover:bg-primary hover:text-white duration-200 transition-all ease-in-out"
-      >
-        Read More
-      </Link>
-      <div className="w-full flex flex-col py-16 px-6 md:px-20">
+    <div className="w-full flex flex-col lg:flex-row items-center justify-around px-5 lg:px-20 py-16">
+      <div className="w-full max-w-3xl flex flex-col gap-6">
+        <div>
+          <h1 className="font-semibold text-primary">About Us</h1>
+        </div>
+        <div>
+          <h3 className="text-neutral-600 font-medium italic">
+            Healing Through Nature, Rooted in Tradition.
+          </h3>
+        </div>
+        <div>
+          <p className="text-body text-neutral-600 mt-4">
+            At Tulsi Ayurveda, we blend ancient Ayurvedic wisdom with modern
+            care to restore balance and well-being. Our mission goes beyond
+            treatment—we educate, empower, and inspire a holistic lifestyle.
+            With a focus on preventive care and nurturing future Vaidyas, we
+            strive to make Ayurveda a global healthcare pillar.
+          </p>
+        </div>
+        <div className="mt-5">
+          <Link
+            href={"/about"}
+            className="px-4 py-2 rounded-full text-body text-white hover:bg-primary/70 bg-primary hover:text-white duration-200 transition-all ease-in-out shadow-md"
+          >
+            Read More
+          </Link>
+        </div>
+      </div>
+      <Image
+        src={aboutImage}
+        alt="about"
+        width={600}
+        height={600}
+        className="w-[20rem] lg:w-[30rem] drop-shadow-xl"
+      />
+      {/* <div className="w-full flex flex-col py-16 px-6 md:px-20">
         <h1 className="text-h2-display max-w-xl">
           <span className="text-primary">Visionaries</span> Behind Tulsi Ayurveda
         </h1>
 
-        {/* DR. ANKIT AGARWAL */}
         <div className="w-full flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16 p-5">
           <div className="w-full md:w-1/2">
             <Image
@@ -71,7 +81,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* DR. ANSHIKA MAMGAIN */}
         <div className="w-full flex flex-col md:flex-row items-center gap-10 md:gap-16 p-5 mt-16">
           <div className="w-full md:w-1/2">
             <Image
@@ -104,7 +113,7 @@ const About = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
