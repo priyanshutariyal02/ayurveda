@@ -10,7 +10,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 import exp1 from "../../app/assets/exp1.jpg";
-import exp2 from "../../app/assets/exp2.jpg";
+import e2 from "../../app/assets/exp2.jpg";
 
 interface ExpertData {
   heading: string;
@@ -29,7 +29,7 @@ const expertData: ExpertData[] = [
   {
     heading:
       "Suffering from Piles? Experience Permanent Relief with Tulsi Ayurveda",
-    img: exp2,
+    img: e2,
     para: "Ayurveda treats not just piles or fissures but the root imbalance causing them.",
     link: "#",
   },
