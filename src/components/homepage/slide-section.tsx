@@ -9,8 +9,8 @@ import "swiper/css/free-mode";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-import exp1 from "../../app/assets/exp1.jpg";
-import e2 from "../../app/assets/exp2.jpg";
+import e1 from "../../app/assets/e1.jpg";
+import e2 from "../../app/assets/e2.jpg";
 
 interface ExpertData {
   heading: string;
@@ -22,7 +22,7 @@ interface ExpertData {
 const expertData: ExpertData[] = [
   {
     heading: "India's Best Ayurvedic Clinic For Chronic Diseases",
-    img: exp1,
+    img: e1,
     para: "Your health is an investment, not an expense. Nourish it naturally with Ayurveda!",
     link: "#",
   },
@@ -35,7 +35,7 @@ const expertData: ExpertData[] = [
   },
   {
     heading: "India's Most Authentic Panchakarma Therapy - Rooted in Tradition",
-    img: exp1,
+    img: e1,
     para: "Healing begins when you listen to your body; Ayurveda helps you understand its language!",
     link: "#",
   },
