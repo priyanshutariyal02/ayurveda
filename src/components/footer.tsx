@@ -65,7 +65,7 @@ const Footer = () => {
         {/* Left Section */}
         <div className="max-w-xl">
           <h1 className="text-2xl font-bold">
-            Tulsi <span className="text-green-600">Ayurveda</span>
+            Tulsi <span className="text-primary">Ayurveda</span>
           </h1>
           <p className="text-gray-600 text-sm mt-4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam alias
@@ -84,7 +84,7 @@ const Footer = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="border rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="border rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary"
                 required
               />
 
@@ -94,19 +94,19 @@ const Footer = () => {
                   name="subscribe"
                   checked={subscribed}
                   onChange={(e) => setSubscribed(e.target.checked)}
-                  className="w-4 h-4 accent-green-600"
+                  className="w-4 h-4 accent-primary"
                 />
                 Subscribe to our newsletter
               </label>
 
               <button
                 type="submit"
-                className="bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition"
+                className="bg-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-primary/70 transition"
               >
                 Submit
               </button>
 
-              {message && <p className="text-sm text-green-600">{message}</p>}
+              {message && <p className="text-sm text-primary">{message}</p>}
             </form>
           </div>
         </div>
@@ -121,7 +121,7 @@ const Footer = () => {
               </h3>
               <ul className="flex flex-col gap-2 text-gray-600 text-sm">
                 {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex} className="hover:text-green-600">
+                  <li key={linkIndex} className="hover:text-primary">
                     <Link href={link.link}>{link.name}</Link>
                   </li>
                 ))}
@@ -141,28 +141,37 @@ const Footer = () => {
             </div>
 
             <div className="flex gap-4 mt-2">
-              <Link href="https://www.instagram.com/tulsiayurveda/" target="blank">
+              <Link
+                href="https://www.instagram.com/tulsiayurveda/"
+                target="blank"
+              >
                 <IconBrandInstagram
                   size={24}
-                  className="text-gray-600 hover:text-green-600"
+                  className="text-gray-600 hover:text-primary"
                 />
               </Link>
               <Link href="https://www.facebook.com/tulsiclinic/" target="blank">
                 <IconBrandFacebook
                   size={24}
-                  className="text-gray-600 hover:text-green-600"
+                  className="text-gray-600 hover:text-primary"
                 />
               </Link>
-              <Link href="https://www.linkedin.com/in/dr-ankit-aggarwal-1931717a/" target="blank">
+              <Link
+                href="https://www.linkedin.com/in/dr-ankit-aggarwal-1931717a/"
+                target="blank"
+              >
                 <IconBrandLinkedin
                   size={24}
-                  className="text-gray-600 hover:text-green-600"
+                  className="text-gray-600 hover:text-primary"
                 />
               </Link>
-              <Link href="https://www.youtube.com/@Tulsi_ayurveda/videos" target="blank">
+              <Link
+                href="https://www.youtube.com/@Tulsi_ayurveda/videos"
+                target="blank"
+              >
                 <IconBrandYoutube
                   size={24}
-                  className="text-gray-600 hover:text-green-600"
+                  className="text-gray-600 hover:text-primary"
                 />
               </Link>
             </div>
