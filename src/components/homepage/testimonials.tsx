@@ -65,16 +65,18 @@ const Testimonials = () => {
   return (
     <div className="w-full py-5 lg:py-14 px-5 lg:px-28 text-gray-800">
       <div className="w-full flex flex-col lg:items-center lg:justify-center">
-        <p className="text-body font-semibold text-primary">Testimonials</p>
-        <h1 className="text-h2-display">
-          What Our <span className="text-green-600 italic">Clients</span> say?
+        <h1 className="text-primary text-h1 font-semibold">
+          Testimonials
         </h1>
+        <h3 className="text-neutral-600 font-medium italic">
+          What Our Clients say?
+        </h3>
 
-        <p className="text-link max-w-2xl text-left lg:text-center">
+        {/* <p className="max-w-xl text-link text-center mt-4">
           Our clients&apos; success is our greatest achievement. Hear what they
           have to say about our expertise, accuracy, and commitment to
           excellence.
-        </p>
+        </p> */}
       </div>
       <div className="w-full mt-12">
         <Slider {...sliderSettings}>
