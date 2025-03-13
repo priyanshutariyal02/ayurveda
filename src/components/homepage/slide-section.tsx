@@ -66,16 +66,16 @@ const SlideSection: React.FC = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.5 }}
-                  className="w-full flex gap-10 justify-between shadow-lg rounded-2xl overflow-hidden p-6 lg:px-10"
+                  className="w-full flex flex-col lg:flex-row gap-10 justify-between shadow-lg overflow-hidden p-5 lg:px-10"
                 >
                   <div className="w-full flex flex-col justify-center gap-10">
-                    <h3 className="text-sm font-semibold text-gray-500 uppercase">
+                    <h3 className="text-body font-semibold text-gray-500 uppercase">
                       Welcome to{" "}
                       <span className="text-primary font-bold">
                         TULSI AYURVEDA
                       </span>
                     </h3>
-                    <h1 className="text-3xl lg:text-5xl font-bold text-gray-900">
+                    <h1 className="text-h2 font-bold text-gray-900 max-w-3xl">
                       {data.heading}
                     </h1>
                     <p className="text-lg text-gray-600">{data.para}</p>
@@ -95,7 +95,7 @@ const SlideSection: React.FC = () => {
                     className="w-full min-h-[50vh] flex justify-end relative"
                   >
                     {/* Gradient Background Behind Image */}
-                    <div className="absolute -top-28 -left-28 h-[60rem] w-[400px] bg-gradient-to-b from-[#ffffff] to-[#ffffff] opacity-[20] blur-[50px] flex-shrink-0 z-50" />
+                    <div className="absolute hidden xl:block -top-28 -left-1 h-[60rem] w-[300px] bg-gradient-to-b from-[#ffffff] to-[#ffffff] opacity-[20] blur-[50px] flex-shrink-0 z-50" />
 
                     {/* Image (Higher z-index) */}
                     <Image

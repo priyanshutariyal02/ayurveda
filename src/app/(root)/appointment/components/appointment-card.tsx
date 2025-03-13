@@ -14,9 +14,7 @@ const AppointmentCard = ({
 }) => {
   return (
     <div className="w-full flex flex-col justify-center items-center gap-12">
-      <h1 className="text-h2-display text-center text-background">
-        Appontments
-      </h1>
+      <h1 className="text-center text-primary font-semibold">Appontments</h1>
       <div className="w-full flex items-center justify-center px-4 lg:px-20 py-10">
         <div className="flex flex-col md:flex-row gap-10 mx-auto max-w-7xl">
           {appointment.map((item) => (

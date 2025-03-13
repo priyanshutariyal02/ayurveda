@@ -20,7 +20,7 @@ const words = [
   },
   {
     text: "Ayurveda.",
-    className: "text-green-500 dark:text-primary",
+    className: "text-primary",
   },
 ];
 
@@ -34,7 +34,7 @@ const Hero = () => {
           alt="Hero Image"
           layout="fill"
           objectFit="cover"
-          className=" object-cover opacity-25"
+          className="object-cover opacity-40"
         />
       </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { NavigationMenu } from "@radix-ui/react-navigation-menu";
@@ -10,10 +10,14 @@ import { IconShoppingBag, IconMenu2, IconX } from "@tabler/icons-react";
 import LoginDialog from "../homepage/login-dialog";
 import CartSidebar from "../cart-sidebar";
 import SidebarMenu from "../sidebar-menu";
+import { usePathname } from "next/navigation";
+import path from "path";
 
 const NavbarExpanded = ({ className }: { className?: string }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const pathname = usePathname();
 
   return (
     <NavigationMenu
@@ -28,13 +32,22 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
 
       <div className="flex items-center justify-between mx-auto max-w-screen-xl px-4 py-3">
         {/* Logo */}
-        <Link href="/" className="text-body text-white font-bold drop-shadow-sm">
+        <Link
+          href="/"
+          className={`text-body ${
+            pathname === "/" ? "text-white" : "text-black"
+          } font-bold drop-shadow-sm`}
+        >
           <span className="text-secondary">Tulsi</span> Ayurveda
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex text-link">
-          <Menu className="flex text-white items-center gap-6">
+          <Menu
+            className={`flex ${
+              pathname === "/" ? "text-white" : "text-black"
+            } items-center gap-6`}
+          >
             {navItems.slice(0, navItems.length - 1).map((item) => (
               <Link
                 key={item.name}

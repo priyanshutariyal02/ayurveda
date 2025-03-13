@@ -55,11 +55,11 @@ const BookAppointment = ({
         isOpen ? "flex" : "hidden"
       } items-center justify-center`}
     >
-      <div className="bg-white py-5 pl-5 pr-2 rounded-lg w-full max-w-7xl overflow-hidden h-[80vh]">
+      <div className="bg-white py-5 lg:pl-5 lg:pr-2 rounded-lg lg:w-full max-w-7xl overflow-hidden h-[80vh] w-[90%]">
         <div className="w-full h-full overflow-y-auto p-5 group">
           <div className="mb-4">
-            <h2 className="font-semibold">Initial Consultation - {isOpen}</h2>
-            <p>
+            <h2 className="font-semibold text-neutral-700">Initial Consultation - {isOpen}</h2>
+            <p className="text-link">
               Check out our availability and book the date and time that works
               for you
             </p>

@@ -39,9 +39,7 @@ const About = () => {
     <SmoothScroll>
       <div className="w-full px-5 lg:px-16 py-16">
         <div className="w-full flex flex-col justify-center items-center gap-12">
-          <h1 className="text-h2-display text-center text-background">
-            About Us
-          </h1>
+          <h1 className="text-center text-primary font-semibold">About Us</h1>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -68,7 +66,7 @@ const About = () => {
               {about.map((item, index) => (
                 <motion.li
                   key={index}
-                  className="p-6 bg-white shadow-lg rounded-lg border-l-4 border-secondary hover:shadow-xl transition-all"
+                  className="p-6 bg-white shadow-lg rounded-lg border-l-4 border-primary hover:shadow-xl transition-all"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -144,11 +142,11 @@ const About = () => {
         </section>
         <div className="w-full mt-12">
           <div className="w-full flex flex-col items-center mb-10">
-            <h1 className="text-h2-display leading-tight ">
+            <h1 className="text-primary text-h2-display font-semibold leading-tight ">
               Glimpses of <span className="text-green-600 italic">Tuslsi</span>{" "}
               Ayurveda
             </h1>
-            <p className="text-lg text-gray-700 max-w-2xl mt-4 md:text-center">
+            <p className="text-link text-gray-700 max-w-2xl mt-4 md:text-center">
               Tulsi Ayurveda blends ancient wisdom with modern wellness to
               restore balance in mind, body, and spirit. With personalized
               treatments and expert guidance, we help you embrace Ayurveda as a
@@ -162,7 +160,7 @@ const About = () => {
                   <Image
                     src={img.name}
                     alt={"gallery"}
-                    className="w-full h-full object-cover rounded-xl"
+                    className="w-full h-full object-cover rounded-xl cursor-grab"
                     width={1000}
                     height={1000}
                   />

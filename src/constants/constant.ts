@@ -392,3 +392,24 @@ export const appointment: Appointment[] = [
     link: "",
   },
 ];
+
+
+// appontment
+export const guideLine = [
+  {
+    title: "Rescheduling Policy",
+    desc: "If a patient misses the consultation, they are allowed to reschedule only once. Further rescheduling will require a new booking.",
+  },
+  {
+    title: "Follow-Up Consultation Fee",
+    desc: "After the initial consultation, the follow-up consultation will be charged at ₹300.",
+  },
+  {
+    title: "Cancellation Policy",
+    desc: "Appointments once booked are non-refundable. However, rescheduling is allowed as per the above policy.",
+  },
+  {
+    title: "Timely Attendance",
+    desc: "Patients are requested to join the consultation on time. A delay of more than 10 minutes may result in the session being marked as missed.",
+  },
+];
