@@ -144,6 +144,7 @@ const AppointmentForm = ({
               mode="single"
               selected={date}
               onSelect={handleDateSelect}
+              className="rdp-month_caption:justify-center"
             />
             {date && (
               <div className="p-4 border rounded-lg bg-stone-50">

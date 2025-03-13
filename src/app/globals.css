@@ -111,3 +111,13 @@ p {
 .rdp-selected .rdp-day_button {
   border: #d39761;
 } */
+
+.rdp-caption_label {
+  z-index: 1;
+  position: relative;
+  display: inline-flex;
+  padding-left: 13px;
+  align-items: center;
+  white-space: nowrap;
+  border: 0;
+}
