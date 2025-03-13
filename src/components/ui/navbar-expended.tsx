@@ -95,6 +95,7 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
                 pathname === "/" ? "text-white" : "text-background"
               }`}
             />
+            
           </button>
         </div>
       </div>
