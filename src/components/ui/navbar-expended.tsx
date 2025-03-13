@@ -90,7 +90,11 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
             className="lg:hidden p-2"
             onClick={() => setIsSidebarOpen(true)}
           >
-            <IconMenu2 className="w-7 h-7 text-background" />
+            <IconMenu2
+              className={`w-7 h-7 ${
+                pathname === "/" ? "text-white" : "text-background"
+              }`}
+            />
           </button>
         </div>
       </div>
