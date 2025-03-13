@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
+import { DayPicker } from "react-day-picker";
 import ReactPhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Calendar } from "@/components/ui/calendar";
 import { guideLine } from "@/constants/constant";
 
 type TimeSlot = {
@@ -35,16 +35,14 @@ const AppointmentForm = ({
     time: "",
     message: "",
   });
-  let weekName = "",
-    day = "",
-    month = "",
-    year = "";
 
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>(initialTimeSlots);
 
-  if (date) {
-    [weekName, day, month, year] = date.toDateString().split(" ");
-  }
+  // ✅ Extract date details directly from `date`
+  const weekName = date?.toLocaleDateString("en-US", { weekday: "long" }) || "";
+  const day = date?.getDate().toString() || "";
+  const month = date?.toLocaleDateString("en-US", { month: "long" }) || "";
+  const year = date?.getFullYear().toString() || "";
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,15 +50,13 @@ const AppointmentForm = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // ✅ Handle date selection directly
   const handleDateSelect = (selectedDate: Date | undefined) => {
     if (selectedDate) {
-      const [weekName, day, month, year] = selectedDate
-        .toDateString()
-        .split(" ");
       setDate(selectedDate);
       setFormData({
         ...formData,
-        date: `${day} ${month} ${year}`, // Store in readable format
+        date: `${day} ${month} ${year}`,
       });
     }
   };
@@ -72,10 +68,9 @@ const AppointmentForm = ({
   const handleTimeSelect = (selectedTime: string) => {
     const updatedSlots = timeSlots.map((slot) => ({
       ...slot,
-      isBooked: slot.time === selectedTime, // Only keep selected slot true
+      isBooked: slot.time === selectedTime,
     }));
     setTimeSlots(updatedSlots);
-
     setFormData({ ...formData, time: selectedTime });
   };
 
@@ -83,7 +78,6 @@ const AppointmentForm = ({
     e.preventDefault();
     console.log("Form Data:", formData);
 
-    // Simulate form submission
     setIsOpen("");
     setFormData({
       name: "",
@@ -147,17 +141,16 @@ const AppointmentForm = ({
             Date
           </label>
           <div className="flex gap-5 border p-3 rounded-lg items-center justify-around mt-2 flex-col sm:flex-row">
-            <Calendar
+            <DayPicker
               mode="single"
               selected={date}
               onSelect={handleDateSelect}
-              className="rounded-md"
             />
             {date && (
               <div className="p-4 border rounded-lg bg-stone-50">
-                <h2 className="font-semibold text-gray-800">{weekName}</h2>
+                <h2 className="font-semibold text-gray-800">{weekName.slice(0,3)}</h2>
                 <h4 className="text-gray-600 mt-1">
-                  {day}, {month} {year}
+                  {day} {month} {year}
                 </h4>
               </div>
             )}
@@ -205,21 +198,6 @@ const AppointmentForm = ({
           className="mt-1 p-2 border rounded-md w-full"
           placeholder="Your Message"
         />
-      </div>
-
-      {/* Guidelines */}
-      <div>
-        <h3 className="mb-4 text-lg font-semibold">
-          Appointment Booking Guidelines
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {guideLine.map((item) => (
-            <div key={item.title} className="border rounded-lg p-4 bg-stone-50">
-              <h4 className="font-semibold text-gray-800">{item.title}</h4>
-              <p className="text-sm text-gray-600 mt-1">{item.desc}</p>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Buttons */}

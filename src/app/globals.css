@@ -90,3 +90,13 @@ p {
     @apply bg-background text-foreground;
   }
 }
+
+.rdp-day_button:active {
+  border-color: bisque;
+}
+
+.rdp-selected:active {
+  font-weight: bold;
+  font-size: large;
+  border-color: bisque;
+}
