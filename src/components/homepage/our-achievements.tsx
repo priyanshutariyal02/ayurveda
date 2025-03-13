@@ -6,12 +6,12 @@ const OurAchievements = () => {
   return (
     <div className="w-full py-10 lg:py-16 px-5 lg:px-28 text-gray-800 flex flex-col lg:flex-row gap-14 items-center">
       {/* Text Section */}
-      <div className="w-full flex flex-col items-start">
+      <div className="w-full flex flex-col items-center lg:items-start">
         <h1 className="text-primary text-h2-display font-semibold">
           Our Achievements
         </h1>
 
-        <p className="text-body text-gray-700 max-w-2xl mt-4">
+        <p className="text-body text-gray-700 max-w-2xl mt-4 text-center lg:text-left">
           Tulsi Ayurveda has successfully treated thousands of patients with
           chronic conditions, pioneered Ayurvedic neurological treatments,
           expanded globally, developed unique herbal formulations, and promoted
@@ -19,7 +19,7 @@ const OurAchievements = () => {
         </p>
 
         {/* Achievements Grid */}
-        <div className="flex flex-wrap gap-10 mt-10">
+        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-10 mt-10">
           {achievements.map((item) => (
             <div
               key={item.title}

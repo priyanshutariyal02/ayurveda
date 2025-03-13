@@ -93,74 +93,87 @@ export function FocusCards() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-6 gap-2  mx-auto md:px-8 w-full">
-      <div className="grid grid-rows-3">
-        <div className="row-span-2">
+    <div className="w-full">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:hidden gap-5">
+        {images.map((item, index) => (
           <Card
-            card={images[0]}
-            index={0}
+            card={item}
+            key={index}
+            index={index}
             hovered={hovered}
             setHovered={setHovered}
           />
-        </div>
-        <div className="row-span-1 bg-primary/10"></div>
+        ))}
       </div>
-      <div className="grid grid-rows-3">
-        <div className="row-span-1"></div>
-        <div className="row-span-2">
-          <Card
-            card={images[1]}
-            index={1}
-            hovered={hovered}
-            setHovered={setHovered}
-          />
+      <div className="hidden lg:grid grid-cols-1 md:grid-cols-6 gap-2  mx-auto md:px-8 w-full">
+        <div className="grid grid-rows-3">
+          <div className="row-span-2">
+            <Card
+              card={images[0]}
+              index={0}
+              hovered={hovered}
+              setHovered={setHovered}
+            />
+          </div>
+          <div className="row-span-1 bg-primary/10"></div>
         </div>
-      </div>
-      <div className="grid grid-rows-3">
-        <div className="row-span-1"></div>
-        <div className="row-span-1"></div>
-        <div className="row-span-1">
-          <Card
-            card={images[2]}
-            index={2}
-            hovered={hovered}
-            setHovered={setHovered}
-          />
+        <div className="grid grid-rows-3">
+          <div className="row-span-1"></div>
+          <div className="row-span-2">
+            <Card
+              card={images[1]}
+              index={1}
+              hovered={hovered}
+              setHovered={setHovered}
+            />
+          </div>
         </div>
-      </div>
-      <div className="grid grid-rows-3">
-        <div className="row-span-1 bg-primary/10"></div>
-        <div className="row-span-1 "></div>
-        <div className="row-span-1">
-          <Card
-            card={images[3]}
-            index={3}
-            hovered={hovered}
-            setHovered={setHovered}
-          />
+        <div className="grid grid-rows-3">
+          <div className="row-span-1"></div>
+          <div className="row-span-1"></div>
+          <div className="row-span-1">
+            <Card
+              card={images[2]}
+              index={2}
+              hovered={hovered}
+              setHovered={setHovered}
+            />
+          </div>
         </div>
-      </div>
-      <div className="grid grid-rows-3">
-        <div className="row-span-1"></div>
-        <div className="row-span-2">
-          <Card
-            card={images[4]}
-            index={4}
-            hovered={hovered}
-            setHovered={setHovered}
-          />
+        <div className="grid grid-rows-3">
+          <div className="row-span-1 bg-primary/10"></div>
+          <div className="row-span-1 "></div>
+          <div className="row-span-1">
+            <Card
+              card={images[3]}
+              index={3}
+              hovered={hovered}
+              setHovered={setHovered}
+            />
+          </div>
         </div>
-      </div>
-      <div className="grid grid-rows-3">
-        <div className="row-span-2">
-          <Card
-            card={images[5]}
-            index={5}
-            hovered={hovered}
-            setHovered={setHovered}
-          />
+        <div className="grid grid-rows-3">
+          <div className="row-span-1"></div>
+          <div className="row-span-2">
+            <Card
+              card={images[4]}
+              index={4}
+              hovered={hovered}
+              setHovered={setHovered}
+            />
+          </div>
         </div>
-        <div className="row-span-1 bg-primary/10"></div>
+        <div className="grid grid-rows-3">
+          <div className="row-span-2">
+            <Card
+              card={images[5]}
+              index={5}
+              hovered={hovered}
+              setHovered={setHovered}
+            />
+          </div>
+          <div className="row-span-1 bg-primary/10"></div>
+        </div>
       </div>
     </div>
   );

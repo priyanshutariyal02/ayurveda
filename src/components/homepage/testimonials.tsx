@@ -64,7 +64,7 @@ const Testimonials = () => {
 
   return (
     <div className="w-full py-5 lg:py-14 px-5 lg:px-28 text-gray-800">
-      <div className="w-full flex flex-col lg:items-center lg:justify-center">
+      <div className="w-full flex flex-col items-center justify-center">
         <h1 className="text-primary text-h1 font-semibold">
           Testimonials
         </h1>

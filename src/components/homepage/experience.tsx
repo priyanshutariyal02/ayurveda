@@ -4,7 +4,7 @@ import yoga from "../../app/assets/yoga.png";
 import Link from "next/link";
 const Experience = () => {
   return (
-    <div className="my-10 w-full px-5 lg:px-20 flex flex-col lg:flex-row bg-gradient-to-r from-white to-orange-50">
+    <div className="my-10 py-10 w-full px-5 lg:px-20 flex flex-col lg:flex-row bg-gradient-to-r from-white to-orange-50">
       <div className="w-full lg:w-1/2 flex items-center justify-center">
         <Image
           src={yoga}

@@ -3,7 +3,7 @@ import React from "react";
 import whyus from "../../app/assets/whyus.png";
 const WhyUs = () => {
   return (
-    <div className="w-full flex flex-col lg:flex-row-reverse items-center justify-around px-5 lg:px-20 py-16">
+    <div className="w-full flex flex-col gap-5 lg:gap-0 lg:flex-row-reverse items-center justify-around px-5 lg:px-20 py-16">
       <div className="w-full max-w-3xl flex flex-col gap-6">
         <div>
           <h1 className="font-semibold text-primary text-right">Why Us?</h1>

@@ -5,9 +5,9 @@ import React from "react";
 
 const OurProducts = () => {
   return (
-    <div className="w-full px-20 flex flex-col items-center pb-16 ">
+    <div className="w-full px-5 lg:px-20 flex flex-col items-center pb-16 ">
       <h1 className="text-primary font-semibold">Our Products</h1>
-      <h3 className="text-neutral-600 font-medium italic">
+      <h3 className="text-neutral-600 font-medium italic text-center">
         Pure & Natural Ayurvedic Essential
       </h3>
       {/* <p className="max-w-xl text-link text-center mt-4">
@@ -17,7 +17,7 @@ const OurProducts = () => {
         value.
       </p> */}
 
-      <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10">
+      <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-10 mt-10">
         {ourProducts.map((item) => (
           <div
             key={item.title}
