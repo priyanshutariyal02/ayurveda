@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import ReactPhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { guideLine } from "@/constants/constant";
 
 type TimeSlot = {
   time: string;
