@@ -1,7 +1,5 @@
 "use client";
-import SmoothScroll from "@/components/smooth-scroll";
 import React, { useState } from "react";
-import ReactPhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import AppointmentForm from "./appointment-form";
 
