@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import "react-phone-input-2/lib/style.css";
 import AppointmentForm from "./appointment-form";
-
-
+import { useRouter } from "next/navigation";
 
 const BookAppointment = ({
   isOpen,
@@ -12,40 +11,7 @@ const BookAppointment = ({
   isOpen: string;
   setIsOpen: (value: string) => void;
 }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    date: "",
-    time: "",
-    message: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handlePhoneChange = (value: string) => {
-    setFormData({ ...formData, phone: value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send the formData to your backend API
-    console.log("Form Data:", formData);
-    // After successful submission, you might want to close the modal and reset the form
-    setIsOpen("");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      date: "",
-      time: "",
-      message: "",
-    });
-  };
+  const router = useRouter();
 
   return (
     <div
@@ -56,16 +22,15 @@ const BookAppointment = ({
       <div className="bg-white py-5 lg:pl-5 lg:pr-2 rounded-lg lg:w-full max-w-7xl overflow-hidden h-[80vh] w-[95%]">
         <div className="w-full h-full overflow-y-auto p-5 group">
           <div className="mb-4">
-            <h2 className="font-semibold text-neutral-700">Initial Consultation - {isOpen}</h2>
+            <h2 className="font-semibold text-neutral-700">
+              Initial Consultation - {isOpen}
+            </h2>
             <p className="text-link">
               Check out our availability and book the date and time that works
               for you
             </p>
           </div>
-          <AppointmentForm setIsOpen={setIsOpen} />
-
-         
-        
+          <AppointmentForm setIsOpen={setIsOpen} router={router} />
         </div>
       </div>
     </div>

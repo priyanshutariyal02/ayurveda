@@ -1,29 +1,33 @@
 "use client";
-import React, { useState } from "react";
+import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import ReactPhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
 type TimeSlot = {
+  _id: string;
   time: string;
-  isBooked: boolean;
+  booked: boolean;
 };
 
-const initialTimeSlots: TimeSlot[] = [
-  { time: "10:00 am", isBooked: false },
-  { time: "10:30 am", isBooked: false },
-  { time: "11:00 am", isBooked: false },
-  { time: "11:30 am", isBooked: false },
-  { time: "4:30 pm", isBooked: false },
-  { time: "5:00 pm", isBooked: false },
-  { time: "5:30 pm", isBooked: false },
-  { time: "6:00 pm", isBooked: false },
-];
+// const initialTimeSlots: TimeSlot[] = [
+//   { time: "10:00 am", isBooked: false },
+//   { time: "10:30 am", isBooked: false },
+//   { time: "11:00 am", isBooked: false },
+//   { time: "11:30 am", isBooked: false },
+//   { time: "4:30 pm", isBooked: false },
+//   { time: "5:00 pm", isBooked: false },
+//   { time: "5:30 pm", isBooked: false },
+//   { time: "6:00 pm", isBooked: false },
+// ];
 
 const AppointmentForm = ({
   setIsOpen,
+  router,
 }: {
   setIsOpen: (value: string) => void;
+  router: ReturnType<typeof useRouter>;
 }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [formData, setFormData] = useState({
@@ -35,7 +39,30 @@ const AppointmentForm = ({
     message: "",
   });
 
-  const [timeSlots, setTimeSlots] = useState<TimeSlot[]>(initialTimeSlots);
+  const [isLoading, setIsLoading] = useState(false);
+  const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
+
+  useEffect(() => {
+    const fetchTimeSlots = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch("/api/timeslot");
+        if (!res.ok) {
+          throw new Error(`Failed to fetch time slots: ${res.status}`);
+        }
+        const data = await res.json();
+        console.log("Fetched time slots:", data); // ✅ Debug log
+        setTimeSlots(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch time slots:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTimeSlots();
+  }, []);
 
   // ✅ Extract date details directly from `date`
   const weekName = date?.toLocaleDateString("en-US", { weekday: "long" }) || "";
@@ -67,26 +94,51 @@ const AppointmentForm = ({
   const handleTimeSelect = (selectedTime: string) => {
     const updatedSlots = timeSlots.map((slot) => ({
       ...slot,
-      isBooked: slot.time === selectedTime,
+      booked: slot.time === selectedTime, // ✅ Use "booked" instead of "isBooked"
     }));
     setTimeSlots(updatedSlots);
     setFormData({ ...formData, time: selectedTime });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
 
-    setIsOpen("");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      date: "",
-      time: "",
-      message: "",
-    });
-    setTimeSlots(initialTimeSlots);
+    if (!formData.time) {
+      console.error("Time slot is required");
+      return;
+    }
+
+    // Find the selected slot by time
+    const selectedSlot = timeSlots.find((slot) => slot.time === formData.time);
+    if (!selectedSlot) {
+      console.error("Selected time slot not found in the list");
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/timeslot/${selectedSlot._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ date: formData.date, booked: true }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null);
+        throw new Error(
+          errorData?.message || `Failed to book time slot: ${res.status}`
+        );
+      }
+
+      const data = await res.json();
+      console.log("Slot booked:", data);
+
+      // Redirect to the payment page after successful booking
+      router.push("/payment");
+    } catch (error) {
+      console.error("Error booking time slot:", error);
+    }
   };
 
   return (
@@ -148,7 +200,9 @@ const AppointmentForm = ({
             />
             {date && (
               <div className="p-4 border rounded-lg bg-stone-50">
-                <h2 className="font-semibold text-gray-800">{weekName.slice(0,3)}</h2>
+                <h2 className="font-semibold text-gray-800">
+                  {weekName.slice(0, 3)}
+                </h2>
                 <h4 className="text-gray-600 mt-1">
                   {day} {month} {year}
                 </h4>
@@ -162,26 +216,32 @@ const AppointmentForm = ({
           <label className="block text-sm font-medium text-gray-700">
             Time Slot
           </label>
-          <div className="w-full flex flex-wrap gap-3 mt-2">
-            {timeSlots.map((slot, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => handleTimeSelect(slot.time)}
-                disabled={slot.isBooked}
-                className={`border py-2 w-24 px-2 rounded-lg ${
-                  slot.isBooked
-                    ? "bg-primary/10 text-gray-500 cursor-not-allowed"
-                    : "bg-white hover:bg-gray-100 cursor-pointer"
-                } ${
-                  formData.time === slot.time
-                    ? "border-primary text-primary"
-                    : "border-neutral-300"
-                }`}
-              >
-                {slot.time}
-              </button>
-            ))}
+          <div className="flex flex-wrap gap-3 mt-2">
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                {timeSlots.map((slot) => (
+                  <button
+                    key={slot._id}
+                    type="button"
+                    onClick={() => handleTimeSelect(slot.time)}
+                    disabled={slot.booked}
+                    className={`py-2 px-3 border rounded-md ${
+                      slot.booked
+                        ? "bg-primary/10 text-gray-400 cursor-not-allowed"
+                        : "bg-white hover:bg-gray-100 cursor-pointer"
+                    } ${
+                      formData.time === slot.time
+                        ? "border-primary text-primary"
+                        : ""
+                    }`}
+                  >
+                    {slot.time}
+                  </button>
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>

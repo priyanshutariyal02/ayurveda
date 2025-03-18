@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import { appointment } from "@/constants/constant";
 import { IconVideo } from "@tabler/icons-react";
@@ -12,6 +13,8 @@ const AppointmentCard = ({
   isOpen: string;
   setIsOpen: (value: string) => void;
 }) => {
+ 
+
   return (
     <div className="w-full flex flex-col justify-center items-center gap-12">
       <h1 className="text-center text-primary font-semibold">Appontments</h1>
@@ -55,6 +58,7 @@ const AppointmentCard = ({
           ))}
         </div>
       </div>
+     
     </div>
   );
 };

@@ -14,6 +14,7 @@ const Appointment = () => {
       ) : (
         <AppointmentCard isOpen={isOpen} setIsOpen={setIsOpen} />
       )}
+      
     </div>
   );
 };

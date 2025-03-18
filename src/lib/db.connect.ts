@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const dbConnect = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI as string, {
-      dbName: "Ecommerce-Backend",
+      dbName: "time",
     });
     console.log("Connected to MongoDB!");
   } catch (error) {
@@ -11,4 +11,4 @@ const dbConnect = async () => {
   }
 };
 
-module.exports = dbConnect;
+export default dbConnect;
