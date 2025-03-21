@@ -9,14 +9,10 @@ export async function PUT(
   await dbConnect();
 
   try {
-    const { date, booked } = await req.json();
+    const { date, dateKey, booked } = await req.json();
 
-    const slot = await TimeSlot.findByIdAndUpdate(
-      params.id,
-
-      { date: date, booked: booked },
-      { new: true }
-    );
+    // Find the slot
+    const slot = await TimeSlot.findById(params.id);
 
     if (!slot) {
       return NextResponse.json(
@@ -25,14 +21,27 @@ export async function PUT(
       );
     }
 
+    // Initialize bookedDates array if it doesn't exist
+    if (!slot.bookedDates) {
+      slot.bookedDates = [];
+    }
+
+    // Add the dateKey to bookedDates if booking is true and dateKey is not already in the array
+    if (booked && dateKey && !slot.bookedDates.includes(dateKey)) {
+      slot.bookedDates.push(dateKey);
+    }
+
+    // Save the updated slot
+    await slot.save();
+
     return NextResponse.json(
-      { message: "Time slot booked", slot },
+      { message: "Time slot updated", slot },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Failed to book time slot:", error);
+    console.error("Failed to update time slot:", error);
     return NextResponse.json(
-      { message: "Failed to book time slot" },
+      { message: "Failed to update time slot" },
       { status: 500 }
     );
   }

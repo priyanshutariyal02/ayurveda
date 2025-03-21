@@ -5,22 +5,14 @@ import React, { useEffect, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import ReactPhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+
+// Update TimeSlot type to include bookedDates
 type TimeSlot = {
   _id: string;
   time: string;
   booked: boolean;
+  bookedDates?: string[];
 };
-
-// const initialTimeSlots: TimeSlot[] = [
-//   { time: "10:00 am", isBooked: false },
-//   { time: "10:30 am", isBooked: false },
-//   { time: "11:00 am", isBooked: false },
-//   { time: "11:30 am", isBooked: false },
-//   { time: "4:30 pm", isBooked: false },
-//   { time: "5:00 pm", isBooked: false },
-//   { time: "5:30 pm", isBooked: false },
-//   { time: "6:00 pm", isBooked: false },
-// ];
 
 const AppointmentForm = ({
   setIsOpen,
@@ -41,6 +33,9 @@ const AppointmentForm = ({
 
   const [isLoading, setIsLoading] = useState(false);
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
+  const [selectedSlotsByDate, setSelectedSlotsByDate] = useState<
+    Record<string, string>
+  >({});
 
   useEffect(() => {
     const fetchTimeSlots = async () => {
@@ -51,9 +46,8 @@ const AppointmentForm = ({
           throw new Error(`Failed to fetch time slots: ${res.status}`);
         }
         const data = await res.json();
-        console.log("Fetched time slots:", data); // ✅ Debug log
+        console.log("Fetched time slots:", data);
         setTimeSlots(data);
-        setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch time slots:", error);
       } finally {
@@ -64,11 +58,22 @@ const AppointmentForm = ({
     fetchTimeSlots();
   }, []);
 
-  // ✅ Extract date details directly from `date`
+  // Extract date details from date
   const weekName = date?.toLocaleDateString("en-US", { weekday: "long" }) || "";
   const day = date?.getDate().toString() || "";
   const month = date?.toLocaleDateString("en-US", { month: "long" }) || "";
   const year = date?.getFullYear().toString() || "";
+
+  // Function to get a consistent date key format
+  const getDateKey = (date: Date | undefined) => {
+    if (!date) return "";
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  };
+
+  // Check if a time slot is booked for the current date
+  const isSlotBookedForDate = (slot: TimeSlot, dateKey: string) => {
+    return slot.bookedDates?.includes(dateKey) || false;
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -76,13 +81,22 @@ const AppointmentForm = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // ✅ Handle date selection directly
   const handleDateSelect = (selectedDate: Date | undefined) => {
     if (selectedDate) {
       setDate(selectedDate);
+      const weekName = selectedDate.toLocaleDateString("en-US", {
+        weekday: "long",
+      });
+      const day = selectedDate.getDate().toString();
+      const month = selectedDate.toLocaleDateString("en-US", { month: "long" });
+      const year = selectedDate.getFullYear().toString();
+
+      // Update form data with selected date
       setFormData({
         ...formData,
         date: `${day} ${month} ${year}`,
+        // Maintain time selection if it exists for this date
+        time: selectedSlotsByDate[getDateKey(selectedDate)] || "",
       });
     }
   };
@@ -92,19 +106,24 @@ const AppointmentForm = ({
   };
 
   const handleTimeSelect = (selectedTime: string) => {
-    const updatedSlots = timeSlots.map((slot) => ({
-      ...slot,
-      booked: slot.time === selectedTime, // ✅ Use "booked" instead of "isBooked"
-    }));
-    setTimeSlots(updatedSlots);
+    if (!date) return;
+
+    const dateKey = getDateKey(date);
+
+    // Update selected slot for this specific date
+    setSelectedSlotsByDate({
+      ...selectedSlotsByDate,
+      [dateKey]: selectedTime,
+    });
+
     setFormData({ ...formData, time: selectedTime });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!formData.time) {
-      console.error("Time slot is required");
+    setIsLoading(true);
+    if (!formData.time || !date) {
+      console.error("Time slot and date are required");
       return;
     }
 
@@ -115,13 +134,21 @@ const AppointmentForm = ({
       return;
     }
 
+    const dateKey = getDateKey(date);
+    setIsLoading(true);
+
     try {
+      // First update the time slot to mark it as booked
       const res = await fetch(`/api/timeslot/${selectedSlot._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ date: formData.date, booked: true }),
+        body: JSON.stringify({
+          date: formData.date,
+          dateKey: dateKey,
+          booked: true,
+        }),
       });
 
       if (!res.ok) {
@@ -134,10 +161,53 @@ const AppointmentForm = ({
       const data = await res.json();
       console.log("Slot booked:", data);
 
-      // Redirect to the payment page after successful booking
-      router.push("/payment");
+      // Update local state to reflect the booking
+      setTimeSlots(
+        timeSlots.map((slot) => {
+          if (slot._id === selectedSlot._id) {
+            return {
+              ...slot,
+              bookedDates: [...(slot.bookedDates || []), dateKey],
+            };
+          }
+          return slot;
+        })
+      );
+
+      // Create an appointment order
+      const orderResponse = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          appointmentDetails: {
+            ...formData,
+            timeSlotId: selectedSlot._id,
+          },
+        }),
+      });
+
+      if (!orderResponse.ok) {
+        const errorData = await orderResponse.json().catch(() => null);
+        throw new Error(
+          errorData?.message ||
+            `Failed to create appointment order: ${orderResponse.status}`
+        );
+      }
+
+      const orderData = await orderResponse.json();
+      console.log("Appointment order created:", orderData);
+
+      // Redirect to the payment page with the order ID and amount
+      router.push(
+        `/payment?orderId=${orderData._id}&amount=${orderData.amount || 500}`
+      );
     } catch (error) {
-      console.error("Error booking time slot:", error);
+      console.error("Error during appointment booking process:", error);
+      // You may want to add error handling UI here
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -221,25 +291,33 @@ const AppointmentForm = ({
               <Loader />
             ) : (
               <>
-                {timeSlots.map((slot) => (
-                  <button
-                    key={slot._id}
-                    type="button"
-                    onClick={() => handleTimeSelect(slot.time)}
-                    disabled={slot.booked}
-                    className={`py-2 px-3 border rounded-md ${
-                      slot.booked
-                        ? "bg-primary/10 text-gray-400 cursor-not-allowed"
-                        : "bg-white hover:bg-gray-100 cursor-pointer"
-                    } ${
-                      formData.time === slot.time
-                        ? "border-primary text-primary"
-                        : ""
-                    }`}
-                  >
-                    {slot.time}
-                  </button>
-                ))}
+                {timeSlots.map((slot) => {
+                  const currentDateKey = getDateKey(date);
+                  const isBookedForCurrentDate = isSlotBookedForDate(
+                    slot,
+                    currentDateKey
+                  );
+
+                  return (
+                    <button
+                      key={slot._id}
+                      type="button"
+                      onClick={() => handleTimeSelect(slot.time)}
+                      disabled={isBookedForCurrentDate}
+                      className={`py-2 px-3 border rounded-md ${
+                        isBookedForCurrentDate
+                          ? "bg-primary/10 text-gray-400 cursor-not-allowed"
+                          : "bg-white hover:bg-gray-100 cursor-pointer"
+                      } ${
+                        selectedSlotsByDate[currentDateKey] === slot.time
+                          ? "border-primary text-primary"
+                          : ""
+                      }`}
+                    >
+                      {slot.time}
+                    </button>
+                  );
+                })}
               </>
             )}
           </div>
@@ -273,7 +351,7 @@ const AppointmentForm = ({
           type="submit"
           className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/70 duration-200"
         >
-          Book Appointment
+          {isLoading ? <Loader /> : "Book Appointment"}
         </button>
       </div>
     </form>
