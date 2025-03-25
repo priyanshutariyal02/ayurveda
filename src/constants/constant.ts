@@ -187,6 +187,7 @@ export const gallery: Gallery[] = [
 // shop
 
 export interface Product {
+  quantity: number;
   id: number;
   name: string;
   img: string;
@@ -207,6 +208,7 @@ export const products: Product[] = [
     size: "500ml",
     price: 850,
     desc: "",
+    quantity: 0
   },
   {
     id: 2,
@@ -217,6 +219,7 @@ export const products: Product[] = [
     size: "500ml",
     price: 850,
     desc: "",
+    quantity: 0
   },
   {
     id: 3,
@@ -227,6 +230,7 @@ export const products: Product[] = [
     size: "500ml",
     price: 850,
     desc: "",
+    quantity: 0
   },
   {
     id: 4,
@@ -237,6 +241,7 @@ export const products: Product[] = [
     size: "500ml",
     price: 850,
     desc: "",
+    quantity: 0
   },
   {
     id: 5,
@@ -247,6 +252,7 @@ export const products: Product[] = [
     size: "500ml",
     price: 850,
     desc: "",
+    quantity: 0
   },
   {
     id: 6,
@@ -257,6 +263,7 @@ export const products: Product[] = [
     size: "500ml",
     price: 850,
     desc: "",
+    quantity: 0
   },
   {
     id: 7,
@@ -267,9 +274,22 @@ export const products: Product[] = [
     size: "500ml",
     price: 850,
     desc: "Vatahari Oil is a powerful Ayurvedic medicated oil designed to relieve joint pain, muscle stiffness, and inflammation. It is enriched with anti-inflammatory herbs that help balance Vata dosha, making it effective for conditions like arthritis, spondylitis, and muscle stiffness. Regular massage with Vatari Oil improves mobility, reduces swelling, and promotes natural healing. Ideal for those seeking long-term relief through Ayurveda.",
+    quantity: 0
   },
 ];
 
+export interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+export interface UserInfo {
+  name: string;
+  email: string;
+  phone: string;
+} 
 // courses
 interface OnCoursesList {
   name: string;
@@ -379,17 +399,17 @@ export const offCoursesList: OffCoursesList[] = [
 
 interface Appointment {
   name: string;
-  link: string;
+  id: string;
 }
 
 export const appointment: Appointment[] = [
   {
     name: "Dr. Ankit Agarwal",
-    link: "",
+    id: "ankit_agarwal",
   },
   {
     name: "Dr. Anshika",
-    link: "",
+    id: "anshika",
   },
 ];
 

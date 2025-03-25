@@ -44,7 +44,7 @@ const Payment: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="w-full min-h-[60dvh] flex items-center justify-center">
       {scriptLoaded ? (
         <PaymentComp
           orderId={orderId}

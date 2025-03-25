@@ -148,6 +148,35 @@ export async function PUT(
   }
 }
 
+// export async function DELETE(
+//   request: NextRequest,
+//   { params }: { params: { id: string } }
+// ) {
+//   try {
+//     await dbConnect();
+
+//     const deletedOrder = await AppointmentOrder.findByIdAndDelete(params.id);
+
+//     if (!deletedOrder) {
+//       return NextResponse.json(
+//         { message: "Appointment order not found" },
+//         { status: 404 }
+//       );
+//     }
+
+//     return NextResponse.json({
+//       message: "Appointment order deleted successfully",
+//     });
+//   } catch (error: any) {
+//     console.error("Error deleting appointment order:", error);
+//     return NextResponse.json(
+//       { message: error.message || "Failed to delete appointment order" },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -155,15 +184,19 @@ export async function DELETE(
   try {
     await dbConnect();
 
+    console.log("Deleting appointment order with ID:", params.id);
+
     const deletedOrder = await AppointmentOrder.findByIdAndDelete(params.id);
 
     if (!deletedOrder) {
+      console.log("Appointment order not found:", params.id);
       return NextResponse.json(
         { message: "Appointment order not found" },
         { status: 404 }
       );
     }
 
+    console.log("Appointment order deleted successfully:", deletedOrder);
     return NextResponse.json({
       message: "Appointment order deleted successfully",
     });

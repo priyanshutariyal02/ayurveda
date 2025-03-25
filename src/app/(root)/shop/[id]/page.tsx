@@ -1,3 +1,4 @@
+//app/root/shop/[id]/page.tsx
 "use client";
 import { products } from "@/constants/constant";
 import { useParams } from "next/navigation";

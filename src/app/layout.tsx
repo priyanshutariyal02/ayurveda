@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-day-picker/style.css";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Toaster position="bottom-right" />
         <Footer />
       </body>
     </html>

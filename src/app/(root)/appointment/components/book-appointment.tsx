@@ -23,14 +23,19 @@ const BookAppointment = ({
         <div className="w-full h-full overflow-y-auto p-5 group">
           <div className="mb-4">
             <h2 className="font-semibold text-neutral-700">
-              Initial Consultation - {isOpen}
+              Initial Consultation -{" "}
+              {isOpen === "ankit_agarwal" ? "Ankit Agarwal" : "Anshika"}
             </h2>
             <p className="text-link">
               Check out our availability and book the date and time that works
               for you
             </p>
           </div>
-          <AppointmentForm setIsOpen={setIsOpen} router={router} />
+          <AppointmentForm
+            setIsOpen={setIsOpen}
+            router={router}
+            doctorId={isOpen}
+          />
         </div>
       </div>
     </div>
