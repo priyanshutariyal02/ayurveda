@@ -1,3 +1,4 @@
+//api/cart/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { Cart } from "@/models/cart.models";
 import { Product } from "@/models/product.models";

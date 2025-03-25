@@ -13,8 +13,6 @@ const AppointmentCard = ({
   isOpen: string;
   setIsOpen: (value: string) => void;
 }) => {
- 
-
   return (
     <div className="w-full flex flex-col justify-center items-center gap-12">
       <h1 className="text-center text-primary font-semibold">Appontments</h1>
@@ -49,7 +47,7 @@ const AppointmentCard = ({
               </div>
               <button
                 // href={item.link}
-                onClick={() => setIsOpen(item.name)}
+                onClick={() => setIsOpen(item.id)}
                 className="mt-4 bg-background text-white font-medium text-center py-2 rounded-lg hover:bg-background/70 duration-200"
               >
                 Book Now
@@ -58,7 +56,6 @@ const AppointmentCard = ({
           ))}
         </div>
       </div>
-     
     </div>
   );
 };

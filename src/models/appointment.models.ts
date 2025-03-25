@@ -5,7 +5,6 @@ const AppointmentOrderSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      // Made optional
     },
     name: {
       type: String,
@@ -32,6 +31,10 @@ const AppointmentOrderSchema = new mongoose.Schema(
       ref: "TimeSlot",
       required: true,
     },
+    doctorId: {
+      type: String, // Ensure this field is required
+      required: true,
+    },
     message: {
       type: String,
     },
@@ -51,17 +54,16 @@ const AppointmentOrderSchema = new mongoose.Schema(
     },
     meetLink: {
       type: String,
-      // Will be populated after payment
     },
     receiptUrl: {
       type: String,
-      // Can be added if you generate PDF receipts
-    }
+    },
   },
   {
     timestamps: true,
   }
 );
 
-export const AppointmentOrder = 
-  mongoose.models.AppointmentOrder || mongoose.model("AppointmentOrder", AppointmentOrderSchema);
+export const AppointmentOrder =
+  mongoose.models.AppointmentOrder ||
+  mongoose.model("AppointmentOrder", AppointmentOrderSchema);

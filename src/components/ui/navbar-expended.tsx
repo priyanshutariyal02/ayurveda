@@ -64,9 +64,9 @@ const NavbarExpanded = ({ className }: { className?: string }) => {
         <div className="flex items-center gap-5">
           {/* Cart Icon */}
           <div className="relative">
-            <span className="bg-secondary rounded-full flex items-center justify-center text-xs w-4 h-4 absolute top-0 -right-2 font-semibold text-white">
+            {/* <span className="bg-secondary rounded-full flex items-center justify-center text-xs w-4 h-4 absolute top-0 -right-2 font-semibold text-white">
               0
-            </span>
+            </span> */}
             <IconShoppingBag
               onClick={() => setIsCartOpen(!isCartOpen)}
               className="w-7 h-7 text-background cursor-pointer hover:text-background/70 duration-200"

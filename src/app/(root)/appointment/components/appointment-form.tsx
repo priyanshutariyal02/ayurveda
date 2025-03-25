@@ -17,9 +17,11 @@ type TimeSlot = {
 const AppointmentForm = ({
   setIsOpen,
   router,
+  doctorId,
 }: {
   setIsOpen: (value: string) => void;
   router: ReturnType<typeof useRouter>;
+  doctorId: string; // Add doctorId prop
 }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [formData, setFormData] = useState({
@@ -41,7 +43,7 @@ const AppointmentForm = ({
     const fetchTimeSlots = async () => {
       setIsLoading(true);
       try {
-        const res = await fetch("/api/timeslot");
+        const res = await fetch(`/api/timeslot?doctorId=${doctorId}`); // Pass doctorId to fetch time slots
         if (!res.ok) {
           throw new Error(`Failed to fetch time slots: ${res.status}`);
         }
@@ -56,9 +58,7 @@ const AppointmentForm = ({
     };
 
     fetchTimeSlots();
-  }, []);
-
-  // Extract date details from date
+  }, [doctorId]); // Fetch time slots when the selected doctor changes
   const weekName = date?.toLocaleDateString("en-US", { weekday: "long" }) || "";
   const day = date?.getDate().toString() || "";
   const month = date?.toLocaleDateString("en-US", { month: "long" }) || "";
@@ -118,16 +118,16 @@ const AppointmentForm = ({
 
     setFormData({ ...formData, time: selectedTime });
   };
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
     if (!formData.time || !date) {
       console.error("Time slot and date are required");
       return;
     }
 
-    // Find the selected slot by time
     const selectedSlot = timeSlots.find((slot) => slot.time === formData.time);
     if (!selectedSlot) {
       console.error("Selected time slot not found in the list");
@@ -138,7 +138,7 @@ const AppointmentForm = ({
     setIsLoading(true);
 
     try {
-      // First update the time slot to mark it as booked
+      // Update the time slot to mark it as booked
       const res = await fetch(`/api/timeslot/${selectedSlot._id}`, {
         method: "PUT",
         headers: {
@@ -148,6 +148,7 @@ const AppointmentForm = ({
           date: formData.date,
           dateKey: dateKey,
           booked: true,
+          doctorId: doctorId, // Include the doctorId
         }),
       });
 
@@ -161,19 +162,6 @@ const AppointmentForm = ({
       const data = await res.json();
       console.log("Slot booked:", data);
 
-      // Update local state to reflect the booking
-      setTimeSlots(
-        timeSlots.map((slot) => {
-          if (slot._id === selectedSlot._id) {
-            return {
-              ...slot,
-              bookedDates: [...(slot.bookedDates || []), dateKey],
-            };
-          }
-          return slot;
-        })
-      );
-
       // Create an appointment order
       const orderResponse = await fetch("/api/order", {
         method: "POST",
@@ -184,6 +172,7 @@ const AppointmentForm = ({
           appointmentDetails: {
             ...formData,
             timeSlotId: selectedSlot._id,
+            doctorId: doctorId, // Include the selected doctor's ID
           },
         }),
       });
@@ -199,18 +188,16 @@ const AppointmentForm = ({
       const orderData = await orderResponse.json();
       console.log("Appointment order created:", orderData);
 
-      // Redirect to the payment page with the order ID and amount
+      // Redirect to the payment page
       router.push(
         `/payment?orderId=${orderData._id}&amount=${orderData.amount || 500}`
       );
     } catch (error) {
       console.error("Error during appointment booking process:", error);
-      // You may want to add error handling UI here
     } finally {
       setIsLoading(false);
     }
   };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Name */}

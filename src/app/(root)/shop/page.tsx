@@ -1,19 +1,47 @@
 "use client";
+import { useState, useEffect } from "react";
 import SmoothScroll from "@/components/smooth-scroll";
 import { Product, products } from "@/constants/constant";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import toast from "react-hot-toast"; // For toast notifications
 
 const Shop = () => {
   const [cart, setCart] = useState<Product[]>([]);
   const router = useRouter();
 
+  // Load cart from local storage on component mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  // Save cart to local storage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   const addToCart = (product: Product) => {
-    setCart([...cart, product]);
+    const existingItem = cart.find((item) => item.id === product.id);
+    if (existingItem) {
+      // If the product is already in the cart, update its quantity
+      const updatedCart = cart.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setCart(updatedCart);
+    } else {
+      // If the product is not in the cart, add it with a quantity of 1
+      setCart([...cart, { ...product, quantity: 1 }]); // Use `product` instead of `item`
+    }
+    toast.success("Product added to cart! Check out your cart to proceed."); // Show a toast notification
   };
 
-  console.log(cart);
+  // Check if a product is in the cart
+  const isProductInCart = (productId: number) => {
+    return cart.some((item) => item.id === productId);
+  };
 
   return (
     <SmoothScroll>
@@ -25,8 +53,8 @@ const Shop = () => {
           {products.map((item) => (
             <div
               key={item.id}
-              className="w-full h-full flex flex-col justify-between gap-5 rounded-xl cursor-pointer"
-              onClick={() => router.push(`/shop/${item.id}`)}
+              className="w-full h-full flex flex-col justify-between gap-5 rounded-xl"
+              // onClick={() => router.push(`/shop/${item.id}`)}
             >
               <div className="relative w-full flex flex-col justify-between gap-4">
                 {item.tag === "New Offer" && (
@@ -51,13 +79,17 @@ const Shop = () => {
                 <p className="text-link font-medium">₹{item.price}.00</p>
                 <button
                   type="button"
-                  className="border font-medium border-background text-background px-4 py-2 rounded-lg hover:bg-background hover:text-white transition-all duration-200"
+                  className={`border font-medium border-background text-background px-4 py-2 rounded-lg transition-all duration-200 ${
+                    isProductInCart(item.id)
+                      ? "bg-black/80 text-white" // Faded black when added
+                      : "hover:bg-background hover:text-white" // Default style
+                  }`}
                   onClick={(e) => {
                     e.stopPropagation();
                     addToCart(item);
                   }}
                 >
-                  Add to Bag
+                  {isProductInCart(item.id) ? "Add More" : "Add to Bag"}
                 </button>
               </div>
             </div>
