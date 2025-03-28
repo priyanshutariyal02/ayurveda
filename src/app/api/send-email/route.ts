@@ -8,7 +8,7 @@ import {
 
 export async function POST(req: Request) {
   try {
-    const { name, email, address, phone, flatNumber, street } =
+    const { name, email, address, phone, flatNumber, street, cart } =
       await req.json();
 
     // Create a Nodemailer transporter
@@ -33,14 +33,15 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"Tulsi Ayurveda" <${process.env.SMTP_USER}>`,
       to: "himanshubhandari4675@gmail.com",
-      subject: "Order Confirmation",
+      subject: "New Order Received",
       html: getOrderConfirmationEmailtoDr(
         name,
         email,
         phone,
         address,
         street,
-        flatNumber
+        flatNumber,
+        cart
       ),
     });
 

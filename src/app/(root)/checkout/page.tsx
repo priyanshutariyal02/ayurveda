@@ -111,6 +111,7 @@ const CheckoutPage = () => {
               JSON.stringify({ name: userInfo.name, email: userInfo.email })
             );
 
+            // In your handlePayment function:
             await fetch("/api/send-email", {
               method: "POST",
               headers: {
@@ -123,6 +124,7 @@ const CheckoutPage = () => {
                 phone: userInfo.phone,
                 flatNumber: userInfo.flatNumber,
                 street: userInfo.street,
+                cart: cart, // Add the cart to the request
               }),
             });
 
