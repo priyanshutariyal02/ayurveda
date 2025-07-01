@@ -1,98 +1,68 @@
-# 🧘‍♂️ Ayurveda - Ancient Wellness Guide
+# 🌿 Ayurveda - Ayurvedic Products & Doctor Consultation Platform
+
+## 🧾 Project Overview
+
+**Ayurveda** is a full-stack web application that enables users to:
+
+- 🛒 Browse and purchase Ayurvedic products
+- 📅 Book appointments with Ayurvedic doctors
+- 📧 Receive appointment details via email, including a Google Meet link
+
+The platform brings together ancient Ayurvedic wellness practices and modern web technology to provide a seamless digital experience for users seeking natural healthcare solutions.
 
 ---
 
-## 📝 Introduction
+## 🚀 Key Features
 
-**Ayurveda** is a modern web application designed to share the ancient Indian system of natural medicine and wellness. The app provides knowledge about holistic health, lifestyle practices, and natural remedies rooted in Ayurvedic tradition.
-
-The goal is to make Ayurvedic wisdom easily accessible through an intuitive and responsive interface that educates users about:
-- The three Doshas (Vata, Pitta, Kapha)
-- Ayurvedic herbs and natural remedies
-- Lifestyle and dietary suggestions based on dosha type
-- Practical applications of Ayurveda in daily life
-
----
-
-## 💻 Tech Stack
-
-| Technology     | Purpose                                           |
-|----------------|---------------------------------------------------|
-| **Next.js**    | React framework with server-side rendering        |
-| **React.js**   | Component-based UI development                    |
-| **Tailwind CSS** | Utility-first CSS framework for responsive design |
-| **Vercel**     | Deployment and hosting                            |
-| **Markdown/JSON** | Content and structured Ayurvedic data           |
+- ✅ Google authentication for user login
+- ✅ Product listing and shopping cart functionality
+- ✅ Secure online payments via Razorpay
+- ✅ Book appointments with doctors
+- ✅ Google Calendar integration for scheduling
+- ✅ Google Meet link generation for online consultations
+- ✅ Email confirmation sent to users with all appointment details
 
 ---
 
-## ⚙️ Implementation Details
+## 🛠 Tech Stack
 
-### 📁 Project Structure
-
-```
-ayurveda/
-├── components/        # Reusable components (e.g. Navbar, Cards)
-├── pages/             # Next.js page routing (Home, About, Doshas, Remedies)
-├── public/            # Static assets (images, icons)
-├── styles/            # Global CSS and Tailwind config
-├── data/              # Ayurvedic content (e.g., dosha info, remedies)
-├── utils/             # Utility functions (if applicable)
-└── README.md
-```
+| Technology        | Description                                     |
+|-------------------|-------------------------------------------------|
+| **Next.js**       | React framework for full-stack development      |
+| **MongoDB**       | NoSQL database to store users, products, orders |
+| **Tailwind CSS**  | Utility-first CSS framework for styling         |
+| **Razorpay API**  | Secure payment gateway integration              |
+| **Google API**    | Calendar & Meet API for appointments            |
 
 ---
 
-### 🌿 Features
 
-- **Modern UI:** Clean and simple design with a focus on readability.
-- **Dosha Education:** Learn about your body constitution and balancing techniques.
-- **Natural Remedies:** Discover herbs, treatments, and daily practices rooted in Ayurveda.
-- **Responsive Layout:** Optimized for all devices using Tailwind CSS.
-- **Fast & Lightweight:** Deployed on Vercel with fast load times and optimized performance.
+## 📅 Appointment Booking Flow
 
----
-
-## 🚀 Getting Started (Development)
-
-To run the project locally:
-
-```bash
-# Clone the repository
-git clone https://github.com/priyanshutariyal02/ayurveda.git
-
-# Navigate into the project directory
-cd ayurveda
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. User signs in using Google login.
+2. Selects a doctor and picks an available date and time.
+3. The system books the appointment in Google Calendar.
+4. A Google Meet link is automatically generated.
+5. User receives a confirmation email with:
+   - Date and time
+   - Google Meet link
+   - Doctor information
 
 ---
 
-## 📦 Deployment
+## 📤 Deployment
 
-The application is deployed using **Vercel** for seamless CI/CD integration. Just push to the main branch and your changes go live instantly.
+The project is deployed on **Vercel**. To deploy your own version:
 
----
-
-## 📚 Future Improvements
-
-- Add user interaction (dosha quiz)
-- Integrate CMS or database for dynamic content
-- Multi-language support (Hindi, Sanskrit)
-- Dark mode toggle
-- Blog or article section for Ayurvedic tips
+1. Push the code to your GitHub repository.
+2. Connect your GitHub repo to [Vercel](https://vercel.com).
+3. Set environment variables in the Vercel dashboard.
+4. Deploy!
 
 ---
 
-## 🙏 Acknowledgements
+## 📧 Contact
 
-- Inspired by traditional Ayurvedic principles
-- UI influenced by clean, minimal health and wellness platforms
-- Powered by open-source tools and frameworks
+For any inquiries or feedback, feel free to reach out via [GitHub Issues](https://github.com/priyanshutariyal02/ayurveda/issues).
+
+---
