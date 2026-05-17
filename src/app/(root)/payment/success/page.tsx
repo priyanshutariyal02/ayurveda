@@ -28,7 +28,7 @@ interface PaymentData {
   createdAt: string;
 }
 
-const PaymentSuccess: React.FC = () => {
+const PaymentSuccessContent: React.FC = () => {
   const searchParams = useSearchParams();
   const paymentId = searchParams.get("paymentId");
   const [loading, setLoading] = useState(true);
@@ -304,6 +304,14 @@ const PaymentSuccess: React.FC = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const PaymentSuccess: React.FC = () => {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <PaymentSuccessContent />
+    </React.Suspense>
   );
 };
 

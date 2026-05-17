@@ -1,11 +1,11 @@
 // File: app/confirmation/page.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function ConfirmationPage() {
+const ConfirmationContent = () => {
   const searchParams = useSearchParams();
   const [appointmentData, setAppointmentData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -95,5 +95,13 @@ export default function ConfirmationPage() {
         </Link>
       </div>
     </div>
+  );
+};
+
+export default function ConfirmationPage() {
+  return (
+    <React.Suspense fallback={<div className="flex flex-col items-center justify-center min-h-screen p-6">Loading...</div>}>
+      <ConfirmationContent />
+    </React.Suspense>
   );
 }

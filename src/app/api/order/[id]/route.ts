@@ -92,12 +92,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await dbConnect();
 
-    const order = await AppointmentOrder.findById(params.id);
+    const order = await AppointmentOrder.findById(id);
 
     if (!order) {
       return NextResponse.json(
@@ -118,15 +119,16 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await dbConnect();
 
     const body = await request.json();
 
     const updatedOrder = await AppointmentOrder.findByIdAndUpdate(
-      params.id,
+      id,
       { $set: body },
       { new: true, runValidators: true }
     );
@@ -179,17 +181,18 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await dbConnect();
 
-    console.log("Deleting appointment order with ID:", params.id);
+    console.log("Deleting appointment order with ID:", id);
 
-    const deletedOrder = await AppointmentOrder.findByIdAndDelete(params.id);
+    const deletedOrder = await AppointmentOrder.findByIdAndDelete(id);
 
     if (!deletedOrder) {
-      console.log("Appointment order not found:", params.id);
+      console.log("Appointment order not found:", id);
       return NextResponse.json(
         { message: "Appointment order not found" },
         { status: 404 }

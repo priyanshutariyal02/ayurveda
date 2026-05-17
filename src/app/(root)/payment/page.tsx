@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import PaymentComp from "@/components/payment";
 
-const Payment: React.FC = () => {
+const PaymentContent: React.FC = () => {
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const searchParams = useSearchParams();
 
@@ -56,6 +56,14 @@ const Payment: React.FC = () => {
         </div>
       )}
     </div>
+  );
+};
+
+const Payment: React.FC = () => {
+  return (
+    <React.Suspense fallback={<div className="w-full min-h-[60dvh] flex items-center justify-center">Loading...</div>}>
+      <PaymentContent />
+    </React.Suspense>
   );
 };
 

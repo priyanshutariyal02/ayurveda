@@ -53,16 +53,17 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   await dbConnect();
 
   try {
+    const { id } = await params;
     // Include doctorId in the destructured properties from request body
     const { date, dateKey, booked, doctorId } = await req.json();
 
     // Find the slot
-    const slot = await TimeSlot.findById(params.id);
+    const slot = await TimeSlot.findById(id);
 
     if (!slot) {
       return NextResponse.json(
